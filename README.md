@@ -15,9 +15,12 @@ The app provides a user-friendly interface for searching recipes based on specif
 This repository has four branches:
 
 1. **main**: Contains the consolidated codebase and documentation.
-2. **android**: Contains files and code developed by the Android development team.
-3. **cc**: Contains files and code related to cloud computing developed by the respective team.
-4. **ml**: Contains files and code from the machine learning team.
+
+2. **Mobile Development**: [android](https://github.com/alfikiafan/EUY-App/tree/android) - Contains files and code developed by the Android development team.
+
+3. **Cloud Computing**: [cc](https://github.com/alfikiafan/EUY-App/tree/cc) - Contains files and code related to cloud computing developed by the respective team.
+
+4. **Machine Learning**: [ml](https://github.com/alfikiafan/EUY-App/tree/ml) - Contains files and code from the machine learning team.
 
 ## Getting Started
 
