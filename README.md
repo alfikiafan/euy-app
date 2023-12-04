@@ -1,4 +1,4 @@
-# EUY: Eat Up to You - Recipe Finder App
+# EUY: Eat Up to You - Recipe App
 
 Welcome to the EUY: Eat Up to You GitHub repository! This project is a part of the Capstone Project developed by the teams from Bangkit Academy. EUY is a recipe finder application that simplifies the process of finding recipes based on the ingredients you have at home.
 
