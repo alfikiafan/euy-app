@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <TextView
+        style="@style/Text.Body.BlackSemiBold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="12dp"
+        android:paddingHorizontal="24dp"
+        android:text="Alamat email kamu"/>
+
+    <com.android.euy.ui.customview.MyEmailEditText
+        android:id="@+id/edtTxtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white_with_grey_border"
+        android:paddingVertical="12dp"
+        android:paddingHorizontal="15dp"
+        android:layout_marginHorizontal="24dp"
+        android:inputType="textEmailAddress"
+        android:hint="nama@domain.com"/>
+
+    <TextView
+        style="@style/Text.Body.BlackSemiBold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="12dp"
+        android:paddingHorizontal="24dp"
+        android:text="Password kamu"/>
+
+    <com.android.euy.ui.customview.MyPasswordEditText
+        android:id="@+id/edtTxtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white_with_grey_border"
+        android:paddingVertical="12dp"
+        android:paddingHorizontal="15dp"
+        android:layout_marginHorizontal="24dp"
+        android:inputType="textPassword"
+        android:drawableEnd="@drawable/ic_eye_password"
+        android:hint="xxxxxxxxxxxxxx"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSignManual"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign in"
+        android:layout_marginVertical="24dp"
+        android:layout_marginHorizontal="24dp"
+        style="@style/Text.Body.WhiteSemiBold"
+        android:textAllCaps="false"
+        android:background="@drawable/bg_orange_oval"
+        />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:weightSum="3">
+
+        <View
+            android:layout_width="150dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/grey"
+            android:layout_marginHorizontal="12dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="atau"
+            android:textColor="@color/grey"
+            android:fontFamily="@font/montserrat_semibold"/>
+
+        <View
+            android:layout_width="150dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/grey"
+            android:layout_marginHorizontal="12dp"/>
+        
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSignGoogle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SignIn dengan Google"
+        android:paddingLeft="24dp"
+        android:drawablePadding="-24dp"
+        android:layout_marginVertical="24dp"
+        android:layout_marginHorizontal="24dp"
+        style="@style/Text.Body.BlackSemiBold"
+        android:textAllCaps="false"
+        android:drawableLeft="@drawable/ic_google"
+        android:background="@drawable/bg_white_with_grey_border"
+        />
+
+    <TextView
+        android:id="@+id/txtHaveAccount1"
+        style="@style/Text.Body.Black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Belum punya akun?"/>
+    <TextView
+        android:id="@+id/txtHaveAccount2"
+        style="@style/Text.Body.BlackSemiBold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buat akun baru"
+        android:paddingTop="5dp"/>
+
+</LinearLayout>

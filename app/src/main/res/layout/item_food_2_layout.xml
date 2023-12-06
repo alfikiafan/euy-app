@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    app:cardCornerRadius="15dp"
+    android:layout_margin="8dp"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="8dp">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgFood"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/tumis"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="end"
+                android:background="@drawable/bg_blur"
+                android:layout_margin="5dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_time"
+                    app:tint="@color/white" />
+                <TextView
+                    android:id="@+id/timeCook"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="20 Menit"
+                    android:textSize="8sp"
+                    android:paddingHorizontal="5dp"
+                    style="@style/Text.Body.WhiteSemiBold"/>
+
+
+            </LinearLayout>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/namaFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Text.Body.Black"
+            android:textSize="13dp"
+            android:paddingVertical="5dp"
+            android:text="Tumis Daging Sapi"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.ExploreFragment"
+    android:background="@color/lightGrey">
+
+    <LinearLayout
+        android:id="@+id/ll_toolbar_explore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/bg_gradient_with_bottom_left_right_radius"
+        android:gravity="start"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="24dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:paddingVertical="8dp"
+            android:visibility="invisible"
+            android:src="@drawable/ic_fav"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Eksplor resep kuliner\nbaru!"
+            android:textSize="22sp"
+            style="@style/Text.Body.WhiteSemiBold"/>
+
+        <include
+            layout="@layout/search_layout"
+            android:id="@+id/searchEditText"
+            app:layout_constraintDimensionRatio="1:1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="24dp"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvExplore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/ll_toolbar_explore"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        tools:itemCount="6"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="100dp"
+        tools:listitem="@layout/item_food_2_layout"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

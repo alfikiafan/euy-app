@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/utamaFragment"
+        android:title="Utama"
+        android:icon="@drawable/ic_home"/>
+
+    <item
+        android:id="@+id/pantriFragment"
+        android:title="Pantri"
+        android:icon="@drawable/ic_pantri" />
+
+    <item
+        android:id="@+id/exploreFragment"
+        android:title="Explore"
+        android:icon="@drawable/ic_explore"/>
+
+    <item
+        android:id="@+id/profilFragment"
+        android:title="Profil"
+        android:icon="@drawable/ic_profil" />
+
+</menu>

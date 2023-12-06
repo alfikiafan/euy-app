@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:startColor="#FD8577"
+        android:endColor="#FF9F63"
+        android:angle="-180"
+        android:type="linear"
+        />
+    <corners android:bottomLeftRadius="20dp" />  <!-- Corner radius of the button -->
+</shape>
