@@ -1,33 +1,32 @@
+/* eslint-disable camelcase */
 'use strict'
 const {
   Model
 } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
-  class recipe extends Model {
+  class userSeeRecipe extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate (models) {
-      // define association here
+      userSeeRecipe.belongsTo(models.user)
+      userSeeRecipe.belongsTo(models.recipe)
     }
   }
-  recipe.init({
+  userSeeRecipe.init({
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
-    name: DataTypes.STRING,
-    ingredients: DataTypes.TEXT,
-    steps: DataTypes.TEXT,
-    loves: DataTypes.INTEGER,
-    description: DataTypes.TEXT,
-    image: DataTypes.STRING
+    userId: DataTypes.UUID,
+    recipeId: DataTypes.UUID
   }, {
     sequelize,
-    modelName: 'recipe'
+    tableName: 'user_see_recipes',
+    modelName: 'userSeeRecipe'
   })
-  return recipe
+  return userSeeRecipe
 }

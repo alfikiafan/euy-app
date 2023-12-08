@@ -1,102 +1,152 @@
-const Recipe = require('../models/recipe');
-const { Op } = require('sequelize');
+const Sequelize = require('sequelize')
+const Recipe = require('../models').recipe
+const User = require('../models').user
+const UserSeeRecipe = require('../models').userSeeRecipe
+const { Op } = require('sequelize')
+const { checkSavedRecipePayload } = require('../validator/recipes-validator')
+const responses = require('../constants/responses')
+const responseMaker = require('../utils/response-maker')
 
-// Simulating user viewed recipes with an array
-// let viewedRecipes = [];
-
-async function getRecipes(req, res) {
+async function getRecipes (req, res) {
   try {
-    const { page, search } = req.query;
-    let currentPage = 1;
-    let limit = 10;
-    let offset = 0;
+    const { page, search } = req.query
+    let currentPage = 1
+    const limit = 10
+    let offset = 0
 
     if (page) {
-      currentPage = page;
-      offset = (currentPage - 1) * limit;
+      currentPage = page
+      offset = (currentPage - 1) * limit
     }
 
-    let recipes;
+    let recipes
 
     if (search) {
-      const searchlist = search.split(',').map((ingredient) => ingredient.trim());
+      const searchlist = search.split(',').map((ingredient) => ingredient.trim())
 
       recipes = await Recipe.findAll({
         where: {
           [Op.and]: searchlist.map((ingredient) => ({
             ingredients: {
-              [Op.like]: `%${ingredient}%`,
-            },
-          })),
+              [Op.like]: `%${ingredient}%`
+            }
+          }))
         },
-        limit: limit,
-        offset: offset,
-      });
+        limit,
+        offset
+      })
     } else {
       recipes = await Recipe.findAll({
-        limit: limit,
-        offset: offset,
-      });
+        limit,
+        offset
+      })
     }
 
     // Additional processing for splitting ingredients and steps
     recipes.forEach((recipe) => {
-      recipe.ingredients = recipe.ingredients.split('--').filter((ingredient) => ingredient !== '');
-      recipe.steps = recipe.steps.split('--').filter((step) => step !== '');
-    });
+      recipe.ingredients = recipe.ingredients.split('--').filter((ingredient) => ingredient !== '')
+      recipe.steps = recipe.steps.split('--').filter((step) => step !== '')
+    })
 
-    return res.json(recipes);
+    return responseMaker(res, recipes, {
+      ...responses.success,
+      message: 'Successfully retrieved recipes'
+    })
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error: 'Internal Server Error' });
+    return responseMaker(res, null, {
+      ...responses.error,
+      message: error.message
+    })
   }
 }
 
-// async function saveRecipe(data) {
-//   try{
-//     const { name } = data;
+async function getOurRecipeChoices (req, res) {
+  try {
+    const searchList = ['ayam', 'sapi', 'kambing', 'ikan']
+    const recipes = await Promise.all(searchList.map((search) => Recipe.findAll({
+      where: {
+        name: {
+          [Op.like]: `%${search}%`
+        }
+      },
+      order: Sequelize.literal('rand()'),
+      limit: 10
+    })))
 
-//     const saved = await Recipe.create({})
-//   }
-// }
+    const [chicken, beef, lamb, fish] = recipes
+    const data = {
+      chicken,
+      beef,
+      lamb,
+      fish
+    }
 
-// async function saveViewedRecipe(req, res) {
-//   try {
-//     const { recipeId } = req.body;
+    return responseMaker(res, data, {
+      ...responses.success,
+      message: 'Successfully retrieved recipes'
+    })
+  } catch (error) {
+    return responseMaker(res, null, {
+      ...responses.error,
+      message: error.message
+    })
+  }
+}
 
-//     // Simulating saving viewed recipes
-//     viewedRecipes.push(recipeId);
+async function saveViewedRecipe (req, res) {
+  try {
+    const { valid, message } = await checkSavedRecipePayload(req.body)
 
-//     return res.json({ success: true });
-//   } catch (error) {
-//     console.error(error);
-//     return res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// }
+    if (!valid) {
+      return responseMaker(res, null, {
+        ...responses.badRequest,
+        message
+      })
+    }
 
-// async function getViewedRecipes(req, res) {
-//   try {
-//     // Simulating retrieving viewed recipes
-//     const uniqueViewedRecipes = Array.from(new Set(viewedRecipes));
+    const { userId, recipeId } = req.body
 
-//     // Retrieve full recipe details based on recipe IDs (Assuming recipe has an 'id' field)
-//     const recipes = await Recipe.findAll({
-//       where: {
-//         id: {
-//           [Op.in]: uniqueViewedRecipes,
-//         },
-//       },
-//     });
+    const viewedRecipe = await UserSeeRecipe.create({
+      userId,
+      recipeId
+    })
 
-//     return res.json(recipes);
-//   } catch (error) {
-//     console.error(error);
-//     return res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// }
+    const userViewedRecipe = await UserSeeRecipe.findOne({
+      where: {
+        id: viewedRecipe.id
+      },
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: ['password']
+          }
+        },
+        {
+          model: Recipe
+        }
+      ]
+    })
+
+    const data = {
+      viewedRecipe: userViewedRecipe
+    }
+
+    return responseMaker(res, data, {
+      ...responses.created,
+      message: 'Successfully saved recipe view from user'
+    })
+  } catch (error) {
+    console.error(error)
+    return responseMaker(res, null, {
+      ...responses.error,
+      message: error.message
+    })
+  }
+}
 
 module.exports = {
   getRecipes,
-  // saveViewedRecipe,
-  // getViewedRecipes,
-};
+  getOurRecipeChoices,
+  saveViewedRecipe
+}

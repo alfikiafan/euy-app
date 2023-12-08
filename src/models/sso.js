@@ -2,32 +2,31 @@
 const {
   Model
 } = require('sequelize')
+
 module.exports = (sequelize, DataTypes) => {
-  class recipe extends Model {
+  class sso extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate (models) {
-      // define association here
+      sso.belongsTo(models.user)
     }
   }
-  recipe.init({
+  sso.init({
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
-    name: DataTypes.STRING,
-    ingredients: DataTypes.TEXT,
-    steps: DataTypes.TEXT,
-    loves: DataTypes.INTEGER,
-    description: DataTypes.TEXT,
-    image: DataTypes.STRING
+    uid: DataTypes.STRING,
+    userId: DataTypes.UUID,
+    provider: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'recipe'
+    modelName: 'sso'
   })
-  return recipe
+
+  return sso
 }
