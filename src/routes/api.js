@@ -2,6 +2,7 @@ const { Router } = require('express')
 const verifyJwtToken = require('../middlewares/verify-jwt-token.js')
 const { getRecipes, getOurRecipeChoices, saveViewedRecipe } = require('../controllers/recipes.js')
 const { getUser } = require('../controllers/users')
+// eslint-disable-next-line no-unused-vars
 const { login, ssoLogin, register, updateAccessToken } = require('../controllers/auth.js')
 
 const router = Router()
@@ -17,7 +18,7 @@ router.post('/recipes/viewed', [verifyJwtToken], saveViewedRecipe)
 router.post('/auth/register', register)
 router.post('/auth/login', login)
 router.post('/auth/sso', ssoLogin)
-router.post('/token/update', updateAccessToken)
+// router.post('/token/update', updateAccessToken)
 
 router.get('/user/:id', [verifyJwtToken], getUser)
 

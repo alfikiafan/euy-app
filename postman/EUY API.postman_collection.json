@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5fb91a10-ce78-44f4-9e13-0e04f299c360",
+		"_postman_id": "8286c414-5d8f-4419-a7dd-b2f775d4c80e",
 		"name": "EUY API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "13016098"
@@ -48,12 +48,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/auth/register",
-					"protocol": "http",
+					"raw": "{{host}}/api/auth/register",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"auth",
@@ -105,12 +103,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/auth/login",
-					"protocol": "http",
+					"raw": "{{host}}/api/auth/login",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"auth",
@@ -162,12 +158,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/auth/sso",
-					"protocol": "http",
+					"raw": "{{host}}/api/auth/sso",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"auth",
@@ -205,12 +199,10 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/api/token/update",
-					"protocol": "http",
+					"raw": "{{host}}/api/token/update",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"token",
@@ -232,12 +224,10 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/api/recipes/our-choices",
-					"protocol": "http",
+					"raw": "{{host}}/api/recipes/our-choices",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"recipes",
@@ -259,12 +249,10 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/api/recipes?page=1",
-					"protocol": "http",
+					"raw": "{{host}}/api/recipes?page=1",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"recipes"
@@ -291,12 +279,10 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/api/recipes?ingredients=sapi,ayam",
-					"protocol": "http",
+					"raw": "{{host}}/api/recipes?ingredients=sapi,ayam",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"recipes"
@@ -323,12 +309,10 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/api/recipes?search=udang",
-					"protocol": "http",
+					"raw": "{{host}}/api/recipes?search=udang",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"recipes"
@@ -355,12 +339,10 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/api/recipes?search=tahu&ingredients=ayam,ikan",
-					"protocol": "http",
+					"raw": "{{host}}/api/recipes?search=tahu&ingredients=ayam,ikan",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"recipes"
@@ -391,12 +373,10 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/api/user/{{userId}}",
-					"protocol": "http",
+					"raw": "{{host}}/api/user/{{userId}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"user",
@@ -427,12 +407,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/recipes/viewed",
-					"protocol": "http",
+					"raw": "{{host}}/api/recipes/viewed",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "3000",
 					"path": [
 						"api",
 						"recipes",

@@ -83,6 +83,13 @@ async function getOurRecipeChoices (req, res) {
       limit: 10
     })))
 
+    recipes.forEach((recipeCategory) => {
+      recipeCategory.forEach((recipe) => {
+        recipe.ingredients = recipe.ingredients.split('--').filter((ingredient) => ingredient !== '')
+        recipe.steps = recipe.steps.split('--').filter((step) => step !== '')
+      })
+    })
+
     const [chicken, beef, lamb, fish] = recipes
     const data = {
       chicken,

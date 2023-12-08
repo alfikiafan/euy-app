@@ -2,9 +2,10 @@ const jwt = require('jsonwebtoken')
 const appConfig = require('../config')
 
 function generateAccessToken (data) {
-  return `Bearer ${jwt.sign(data, appConfig.appKey, {
-        expiresIn: appConfig.keyExpirationTime
-      })}`
+  return `Bearer ${jwt.sign(data, appConfig.appKey)}`
+  // return `Bearer ${jwt.sign(data, appConfig.appKey, {
+  //       expiresIn: appConfig.keyExpirationTime
+  //     })}`
 }
 
 function generateRefreshToken (data) {
