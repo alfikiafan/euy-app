@@ -259,7 +259,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:3000/api/recipes",
+					"raw": "http://localhost:3000/api/recipes?page=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -268,6 +268,112 @@
 					"path": [
 						"api",
 						"recipes"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Recipes By Ingredients",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Access-Token",
+						"value": "{{accessToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/recipes?ingredients=sapi,ayam",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"recipes"
+					],
+					"query": [
+						{
+							"key": "ingredients",
+							"value": "sapi,ayam"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Recipes By Name",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Access-Token",
+						"value": "{{accessToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/recipes?search=udang",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"recipes"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "udang"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Recipes By Name & Ingredients",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Access-Token",
+						"value": "{{accessToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/recipes?search=tahu&ingredients=ayam,ikan",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"recipes"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "tahu"
+						},
+						{
+							"key": "ingredients",
+							"value": "ayam,ikan"
+						}
 					]
 				}
 			},
