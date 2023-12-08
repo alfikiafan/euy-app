@@ -9,7 +9,7 @@ const responseMaker = require('../utils/response-maker')
 
 async function getRecipes (req, res) {
   try {
-    const { page, search } = req.query
+    const { page, ingredients, search } = req.query
     let currentPage = 1
     const limit = 10
     let offset = 0
@@ -19,28 +19,38 @@ async function getRecipes (req, res) {
       offset = (currentPage - 1) * limit
     }
 
-    let recipes
+    const query = {
+      limit,
+      offset
+    }
+    const whereClause = {
+      where: {
+        [Op.and]: []
+      }
+    }
+
+    if (ingredients) {
+      const ingredientList = ingredients.split(',').map((ingredient) => ingredient.trim())
+      const ingredientQuery = ingredientList.map((ingredient) => ({
+        ingredients: {
+          [Op.like]: `%${ingredient}%`
+        }
+      }))
+      whereClause.where[Op.and].push(ingredientQuery)
+    }
 
     if (search) {
-      const searchlist = search.split(',').map((ingredient) => ingredient.trim())
-
-      recipes = await Recipe.findAll({
-        where: {
-          [Op.and]: searchlist.map((ingredient) => ({
-            ingredients: {
-              [Op.like]: `%${ingredient}%`
-            }
-          }))
-        },
-        limit,
-        offset
-      })
-    } else {
-      recipes = await Recipe.findAll({
-        limit,
-        offset
+      whereClause.where[Op.and].push({
+        name: {
+          [Op.like]: `%${search}%`
+        }
       })
     }
+
+    const recipes = await Recipe.findAll({
+      ...whereClause,
+      ...query
+    })
 
     // Additional processing for splitting ingredients and steps
     recipes.forEach((recipe) => {
