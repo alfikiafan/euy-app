@@ -40,7 +40,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"User\",\n    \"email\": \"user@mail.com\",\n    \"password\": \"user\"\n}",
+					"raw": "{\n    \"name\": \"Testing user\",\n    \"email\": \"testing@mail.com\",\n    \"password\": \"test\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -95,7 +95,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"user@mail.com\",\n    \"password\": \"user\"\n}",
+					"raw": "{\n    \"email\": \"testing@mail.com\",\n    \"password\": \"test\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -150,7 +150,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"uid\": \"12345678\",\n    \"provider\": \"mail\",\n    \"email\": \"user@mail.com\",\n    \"name\": \"User\"\n}",
+					"raw": "{\n    \"uid\": \"128973981273\",\n    \"provider\": \"mail\",\n    \"email\": \"testing@mail.com\",\n    \"name\": \"User Testing\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -399,7 +399,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"userId\": \"{{userId}}\",\n    \"recipeId\": \"35a8495f-9d59-4b84-b01b-a860ac6becdb\"\n}",
+					"raw": "{\n    \"userId\": \"{{userId}}\",\n    \"recipeId\": \"006f4781-6342-42f3-979e-b22766635d35\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -415,6 +415,38 @@
 						"api",
 						"recipes",
 						"viewed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Model Predict",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"recipes\": [\n        {\n            \"recipe_id\": \"42\",\n            \"recipe_title\": \"Chicken Parmesan\"\n        },\n        {\n            \"recipe_id\": \"43\",\n            \"recipe_title\": \"Chicken Marsala\"\n        },\n        {\n            \"recipe_id\": \"44\",\n            \"recipe_title\": \"Baked Ziti\"\n        },\n        {\n            \"recipe_id\": \"45\",\n            \"recipe_title\": \"Rigatoni\"\n        },\n        {\n            \"recipe_id\": \"46\",\n            \"recipe_title\": \"Spaghetti\"\n        },\n        {\n            \"recipe_id\": \"47\",\n            \"recipe_title\": \"Fettuccine Alfredo\"\n        },\n        {\n            \"recipe_id\": \"48\",\n            \"recipe_title\": \"Chicken Alfredo\"\n        },\n        {\n            \"recipe_id\": \"49\",\n            \"recipe_title\": \"Chicken Cacciatore\"\n        },\n        {\n            \"recipe_id\": \"50\",\n            \"recipe_title\": \"Chicken Piccata\"\n        },\n        {\n            \"recipe_id\": \"51\",\n            \"recipe_title\": \"Chicken Francese\"\n        }\n    ],\n    \"clicked_recipes\": [\n        {\n            \"user_id\": \"1\",\n            \"recipe_id\": \"42\",\n            \"recipe_title\": \"Spaghetti\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{modelHost}}/predict",
+					"host": [
+						"{{modelHost}}"
+					],
+					"path": [
+						"predict"
 					]
 				}
 			},
