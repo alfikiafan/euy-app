@@ -28,7 +28,6 @@ async function getUser (req, res) {
       message: 'User retrieved successfully'
     })
   } catch (error) {
-    console.error(error)
     return responseMaker(res, null, {
       ...responses.error,
       message: error.message

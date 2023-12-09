@@ -4,19 +4,25 @@ const User = require('../models').user
 const UserSeeRecipe = require('../models').userSeeRecipe
 const { Op } = require('sequelize')
 const { checkSavedRecipePayload } = require('../validator/recipes-validator')
+const { verifyToken, splitToken } = require('../utils/token-manager')
 const responses = require('../constants/responses')
 const responseMaker = require('../utils/response-maker')
+const config = require('../config')
 
 async function getRecipes (req, res) {
   try {
     const { page, ingredients, search } = req.query
     let currentPage = 1
-    const limit = 10
+    let limit = 10
     let offset = 0
 
     if (page) {
-      currentPage = page
+      currentPage = Number(page)
       offset = (currentPage - 1) * limit
+    }
+
+    if (currentPage === 1) {
+      limit = 100
     }
 
     const query = {
@@ -47,9 +53,10 @@ async function getRecipes (req, res) {
       })
     }
 
-    const recipes = await Recipe.findAll({
+    let recipes = await Recipe.findAll({
       ...whereClause,
-      ...query
+      ...query,
+      order: Sequelize.literal('rand()')
     })
 
     // Additional processing for splitting ingredients and steps
@@ -58,7 +65,72 @@ async function getRecipes (req, res) {
       recipe.steps = recipe.steps.split('--').filter((step) => step !== '')
     })
 
-    return responseMaker(res, recipes, {
+    if (recipes.length >= 10 && currentPage === 1) {
+      const { token } = splitToken(req.headers['x-access-token'])
+      const jwtToken = verifyToken(token)
+      const user = await User.findByPk(jwtToken.id, {
+        include: [
+          {
+            model: UserSeeRecipe,
+            limit: 15,
+            order: [['createdAt', 'DESC']],
+            include: [
+              {
+                model: Recipe
+              }
+            ]
+          }
+        ]
+      })
+
+      try {
+        if (user.userSeeRecipes.length > 0) {
+          // Machine Learning Prediction
+          const postData = {
+            recipes: recipes.map(recipe => ({
+              recipe_id: recipe.id,
+              recipe_title: recipe.name.replace(/[^A-Za-z\s]/g, '').toLowerCase()
+            })),
+            clicked_recipes: user.userSeeRecipes.map(clicked => ({
+              user_id: clicked.userId,
+              recipe_id: clicked.recipeId,
+              recipe_title: clicked.recipe.name.replace(/[^A-Za-z\s]/g, '').toLowerCase()
+            }))
+          }
+
+          const response = await fetch(`${config.modelHostname}/predict`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(postData)
+          })
+
+          const { data } = await response.json()
+          const predictedRecipeTitles = data.predictions
+
+          const reorderedRecipes = []
+          predictedRecipeTitles.forEach((title) => {
+            const recipe = recipes.find(recipe => recipe.name.replace(/[^A-Za-z\s]/g, '').toLowerCase() === title)
+            if (recipe) {
+              reorderedRecipes.push(recipe)
+            }
+          })
+
+          recipes = reorderedRecipes
+        } else {
+          recipes = recipes.slice(0, 10)
+        }
+      } catch (error) {
+        recipes = recipes.slice(0, 10)
+      }
+    }
+
+    const data = {
+      recipes
+    }
+
+    return responseMaker(res, data, {
       ...responses.success,
       message: 'Successfully retrieved recipes'
     })
@@ -154,7 +226,6 @@ async function saveViewedRecipe (req, res) {
       message: 'Successfully saved recipe view from user'
     })
   } catch (error) {
-    console.error(error)
     return responseMaker(res, null, {
       ...responses.error,
       message: error.message

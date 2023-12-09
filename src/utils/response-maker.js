@@ -1,11 +1,10 @@
 // eslint-disable-next-line no-unused-vars
 const { generateAccessToken, generateRefreshToken } = require('../utils/token-manager')
-const bycrypt = require('bcryptjs')
-const appConfig = require('../config')
 
 function responseMaker (res, data, response, config = {
   includeJwt: false,
-  includeRefreshToken: false
+  includeRefreshToken: false,
+  accessTokenData: {}
 }) {
   let objectResponse = {
     status: response.code,
@@ -14,9 +13,7 @@ function responseMaker (res, data, response, config = {
   }
 
   if (config.includeJwt) {
-    const accessToken = generateAccessToken({
-      signature: bycrypt.hashSync(appConfig.keySignature, 8)
-    })
+    const accessToken = generateAccessToken(config.accessTokenData)
     objectResponse = {
       status: objectResponse.status,
       message: objectResponse.message,

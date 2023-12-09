@@ -23,8 +23,17 @@ function verifyToken (token) {
   return data
 }
 
+function splitToken (token) {
+  const [format, tokenValue] = token.split(' ')
+  return {
+    format,
+    token: tokenValue
+  }
+}
+
 module.exports = {
   generateAccessToken,
   generateRefreshToken,
-  verifyToken
+  verifyToken,
+  splitToken
 }

@@ -1,8 +1,9 @@
 const responses = require('../constants/responses')
 const responseMaker = require('../utils/response-maker')
-const { verifyToken } = require('../utils/token-manager')
+const { verifyToken, splitToken } = require('../utils/token-manager')
+const User = require('../models').user
 
-function verifyJwtToken (req, res, next) {
+async function verifyJwtToken (req, res, next) {
   const tokenHeader = req.headers['x-access-token']
   if (!tokenHeader) {
     return responseMaker(res, null, {
@@ -11,7 +12,7 @@ function verifyJwtToken (req, res, next) {
     })
   }
 
-  const [format, token] = tokenHeader.split(' ')
+  const { format, token } = splitToken(tokenHeader)
 
   if (format !== 'Bearer') {
     return responseMaker(res, null, {
@@ -28,8 +29,17 @@ function verifyJwtToken (req, res, next) {
   }
 
   try {
-    verifyToken(token)
-    next()
+    const data = verifyToken(token)
+    const userId = data.id
+    const user = await User.findByPk(userId)
+    if (user) {
+      next()
+    } else {
+      return responseMaker(res, null, {
+        ...responses.unauthorized,
+        message: 'Invalid token'
+      })
+    }
   } catch {
     return responseMaker(res, null, {
       ...responses.unauthorized,

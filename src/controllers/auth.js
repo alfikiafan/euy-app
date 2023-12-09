@@ -41,7 +41,10 @@ async function register (req, res) {
       message: 'User created'
     }, {
       includeJwt: true,
-      includeRefreshToken: true
+      includeRefreshToken: true,
+      accessTokenData: {
+        id: user.id
+      }
     })
   } catch (error) {
     return responseMaker(res, null, {
@@ -89,7 +92,10 @@ async function login (req, res) {
       message: 'User logged in'
     }, {
       includeJwt: true,
-      includeRefreshToken: true
+      includeRefreshToken: true,
+      accessTokenData: {
+        id: data.id
+      }
     })
   } catch (error) {
     return responseMaker(res, null, {
@@ -197,10 +203,12 @@ async function ssoLogin (req, res) {
       message: 'User logged in'
     }, {
       includeJwt: true,
-      includeRefreshToken: true
+      includeRefreshToken: true,
+      accessTokenData: {
+        id: ssoData.userId
+      }
     })
   } catch (error) {
-    console.log(error)
     return responseMaker(res, null, {
       ...responses.error,
       message: error.message
