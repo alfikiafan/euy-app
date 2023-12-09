@@ -1,7 +1,50 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.EUY" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    <style name="Base.Theme.EUY" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/orange</item>
+    </style>
+
+    <style name="Theme.EUY" parent="Base.Theme.EUY" />
+
+    <style name="Text">
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Text.Title">
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:textSize">28sp</item>
+    </style>
+    <style name="Text.Title.Black">
+        <item name="fontFamily">@font/montserrat_bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Text.Body">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Text.OrangeBold">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/orange</item>
+        <item name="fontFamily">@font/montserrat_bold</item>
+    </style>
+
+    <style name="Text.Body.Black">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Text.Body.BlackSemiBold">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/montserrat_semibold</item>
+    </style>
+    <style name="Text.Body.WhiteSemiBold">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/montserrat_semibold</item>
     </style>
 </resources>

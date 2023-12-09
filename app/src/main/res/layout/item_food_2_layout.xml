@@ -37,13 +37,13 @@
                 <ImageView
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:src="@drawable/ic_time"
+                    android:src="@drawable/ic_bahan"
                     app:tint="@color/white" />
                 <TextView
                     android:id="@+id/timeCook"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="20 Menit"
+                    android:text="20 Bahan"
                     android:textSize="8sp"
                     android:paddingHorizontal="5dp"
                     style="@style/Text.Body.WhiteSemiBold"/>
