@@ -150,7 +150,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"uid\": \"128973981273\",\n    \"provider\": \"mail\",\n    \"email\": \"testing@mail.com\",\n    \"name\": \"User Testing\"\n}",
+					"raw": "{\n    \"uid\": \"128973981273\",\n    \"provider\": \"mail\",\n    \"email\": \"testing@mail.com\",\n    \"name\": \"Testing user\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
