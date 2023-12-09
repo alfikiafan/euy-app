@@ -20,6 +20,7 @@
     "firebase": "^10.7.1",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.6.5",
+    "node-fetch": "^2.7.0",
     "sequelize": "^6.35.1",
     "sequelize-cli": "^6.6.2"
   },

@@ -8,6 +8,7 @@ const { verifyToken, splitToken } = require('../utils/token-manager')
 const responses = require('../constants/responses')
 const responseMaker = require('../utils/response-maker')
 const config = require('../config')
+const fetch = require('node-fetch')
 
 async function getRecipes (req, res) {
   try {
