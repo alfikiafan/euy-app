@@ -93,28 +93,28 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"/>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:gravity="center"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent">-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Semua"
-                            android:textSize="12sp"
-                            style="@style/Text.OrangeBold"/>
+<!--                        <TextView-->
+<!--                            style="@style/Text.OrangeBold"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Semua"-->
+<!--                            android:textSize="12sp" />-->
 
-                        <ImageView
-                            android:layout_width="19dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:src="@drawable/ic_arrow_right"/>
+<!--                        <ImageView-->
+<!--                            android:layout_width="19dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="5dp"-->
+<!--                            android:src="@drawable/ic_arrow_right" />-->
 
-                    </LinearLayout>
+<!--                    </LinearLayout>-->
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -153,29 +153,29 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"/>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:gravity="center"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent">-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Semua"
-                            android:textSize="12sp"
-                            style="@style/Text.OrangeBold"/>
+<!--                        <TextView-->
+<!--                            style="@style/Text.OrangeBold"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Semua"-->
+<!--                            android:textSize="12sp" />-->
 
-                        <ImageView
-                            android:id="@+id/icon_arrow_right"
-                            android:layout_width="19dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:src="@drawable/ic_arrow_right"/>
+<!--                        <ImageView-->
+<!--                            android:id="@+id/icon_arrow_right"-->
+<!--                            android:layout_width="19dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="5dp"-->
+<!--                            android:src="@drawable/ic_arrow_right" />-->
 
-                    </LinearLayout>
+<!--                    </LinearLayout>-->
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -214,28 +214,28 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"/>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:gravity="center"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent">-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Semua"
-                            android:textSize="12sp"
-                            style="@style/Text.OrangeBold"/>
+<!--                        <TextView-->
+<!--                            style="@style/Text.OrangeBold"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Semua"-->
+<!--                            android:textSize="12sp" />-->
 
-                        <ImageView
-                            android:layout_width="19dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:src="@drawable/ic_arrow_right"/>
+<!--                        <ImageView-->
+<!--                            android:layout_width="19dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="5dp"-->
+<!--                            android:src="@drawable/ic_arrow_right" />-->
 
-                    </LinearLayout>
+<!--                    </LinearLayout>-->
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -275,28 +275,28 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"/>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:gravity="center"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent">-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Semua"
-                            android:textSize="12sp"
-                            style="@style/Text.OrangeBold"/>
+<!--                        <TextView-->
+<!--                            style="@style/Text.OrangeBold"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Semua"-->
+<!--                            android:textSize="12sp" />-->
 
-                        <ImageView
-                            android:layout_width="19dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:src="@drawable/ic_arrow_right"/>
+<!--                        <ImageView-->
+<!--                            android:layout_width="19dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="5dp"-->
+<!--                            android:src="@drawable/ic_arrow_right" />-->
 
-                    </LinearLayout>
+<!--                    </LinearLayout>-->
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
