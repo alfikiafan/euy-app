@@ -56,11 +56,11 @@
             android:text="Masukkan bahan pilihanmu"
             style="@style/Text.Body.BlackSemiBold"/>
 
-        <!--        <com.google.android.material.chip.Chip-->
-        <!--            android:id="@+id/chipBahan"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="bahan kamu"/>-->
+<!--        <com.google.android.material.chip.Chip-->
+<!--            android:id="@+id/chipBahan"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="bahan kamu"/>-->
 
         <EditText
             android:id="@+id/edtTxtBahan"

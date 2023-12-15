@@ -55,7 +55,7 @@
         android:textAllCaps="false"
         android:background="@drawable/bg_orange_oval"
         />
-
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
             android:layout_marginTop="16dp"
             android:background="@color/grey"
             android:layout_marginHorizontal="12dp"/>
-
+        
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
