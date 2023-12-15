@@ -3,10 +3,13 @@ package com.android.euy.ui.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import com.android.euy.databinding.ActivityMainBinding
 import com.android.euy.ui.viewmodels.AuthViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: AuthViewModel by viewModels()
@@ -16,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel.getCurrentUser()?.let {
+            Log.e("UID", viewModel.getCurrentUser()!!.uid)
             startActivity(Intent(this@MainActivity,HomeActivity::class.java))
         }
 

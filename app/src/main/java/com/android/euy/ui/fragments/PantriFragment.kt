@@ -2,6 +2,8 @@ package com.android.euy.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +20,7 @@ import com.google.android.flexbox.JustifyContent
 class PantriFragment : Fragment() {
     private var _binding: FragmentPantriBinding? = null
     private val binding get() = _binding!!
+    private val listBahan = ArrayList<String>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,11 +36,29 @@ class PantriFragment : Fragment() {
         val layoutManager = FlexboxLayoutManager(context)
         layoutManager.flexDirection = FlexDirection.ROW
         layoutManager.flexWrap = FlexWrap.WRAP
+        val adapter = BahanAdapter(listBahan)
         binding.rvPantri.layoutManager = layoutManager
-        binding.rvPantri.adapter = BahanAdapter(emptyList())
+        binding.rvPantri.adapter = adapter
 
         binding.btnLihatResep.setOnClickListener {
-            startActivity(Intent(this@PantriFragment.context,ResepActivity::class.java))
+            Log.e("RESEP",listBahan.joinToString())
+            val intent = Intent(this@PantriFragment.context,ResepActivity::class.java)
+            intent.putExtra("bahan",listBahan.joinToString())
+            startActivity(intent)
+        }
+
+        binding.edtTxtBahan.setOnKeyListener { _, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                val newItem = binding.edtTxtBahan.text.toString().trim()
+
+                if (newItem.isNotEmpty()) {
+                    listBahan.add(newItem)
+                    adapter.notifyDataSetChanged()
+                    binding.edtTxtBahan.text.clear()
+                }
+                return@setOnKeyListener true
+            }
+            false
         }
 
     }

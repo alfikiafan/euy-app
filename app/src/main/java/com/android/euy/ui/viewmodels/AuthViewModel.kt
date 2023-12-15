@@ -1,9 +1,14 @@
 package com.android.euy.ui.viewmodels
 
+import android.app.Application
+import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.euy.data.model.AuthResult
+import com.android.euy.data.model.LoginSSORequest
+import com.android.euy.data.repositories.UserRepository
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -12,10 +17,32 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.disposables.CompositeDisposable
+import javax.inject.Inject
 
-class AuthViewModel : ViewModel() {
+
+@HiltViewModel
+class AuthViewModel @Inject constructor(private val repository: UserRepository): ViewModel() {
     private val auth = Firebase.auth
     val db = Firebase.firestore
+    private val compositeDisposable = CompositeDisposable()
+    private val _accessToken = MutableLiveData<String>()
+    val accessToken: LiveData<String> = _accessToken
+
+    fun signInWithSSO(uid: String, provider: String, email: String, name: String){
+        compositeDisposable.add(
+            repository.login(LoginSSORequest(uid,provider,email,name)).subscribe(
+                {
+                    Log.e("success", it.toString())
+                    _accessToken.postValue(it.accessToken)
+                },
+                {
+                    Log.e("error", it.message.toString())
+                }
+            )
+        )
+    }
 
     fun signInWithGoogle(idToken: String): LiveData<AuthResult> {
         val resultLiveData = MutableLiveData<AuthResult>()
@@ -75,6 +102,7 @@ class AuthViewModel : ViewModel() {
         return db.collection("users").whereEqualTo("email",email)
             .get()
     }
+
     fun addUserToDB(email: String, password: String, name: String): Task<DocumentReference> {
         val user = hashMapOf(
             "name" to name,
@@ -84,5 +112,11 @@ class AuthViewModel : ViewModel() {
         return db.collection("users")
             .add(user)
 
+    }
+
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.dispose()
     }
 }

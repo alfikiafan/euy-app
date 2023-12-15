@@ -1,8 +1,11 @@
 package com.android.euy.ui.activities
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -13,14 +16,19 @@ import com.android.euy.ui.viewmodels.AuthViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignInBinding
     private val viewModel: AuthViewModel by viewModels()
+    private lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        sharedPreferences = getSharedPreferences("EUYPref",Context.MODE_PRIVATE)
 
         binding.emailPassword.btnSignManual.setOnClickListener {
             binding.progressBar.visibility = View.VISIBLE
@@ -37,8 +45,11 @@ class SignInActivity : AppCompatActivity() {
                             when (result) {
                                 is AuthResult.Success -> {
                                     // Handle successful sign-in
-                                    binding.progressBar.visibility = View.GONE
-                                    startActivity(Intent(this@SignInActivity,HomeActivity::class.java))
+                                    result.user?.let {
+                                        viewModel.signInWithSSO(result.user.uid,"email",email,"")
+                                    }
+//                                    binding.progressBar.visibility = View.GONE
+//                                    startActivity(Intent(this@SignInActivity,HomeActivity::class.java))
                                 }
 
                                 is AuthResult.Error -> {
@@ -62,6 +73,17 @@ class SignInActivity : AppCompatActivity() {
             signInWithGoogle()
         }
 
+        viewModel.accessToken.observe(this) {
+            if (it != null) {
+                sharedPreferences.edit().putString("token", it).apply()
+                binding.progressBar.visibility = View.GONE
+                startActivity(Intent(this@SignInActivity, HomeActivity::class.java))
+            } else {
+                Toast.makeText(this@SignInActivity.applicationContext,"Error fetching token",
+                    Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
     }
 
     private fun signInWithGoogle() {
@@ -91,8 +113,13 @@ class SignInActivity : AppCompatActivity() {
                             when (result) {
                                 is AuthResult.Success -> {
                                     // Handle successful sign-in
-                                    binding.progressBar.visibility = View.GONE
-                                    startActivity(Intent(this@SignInActivity,HomeActivity::class.java))
+                                    result.user?.let {
+                                        viewModel.signInWithSSO(result.user.uid,"email",
+                                            result.user.email.toString(), result.user.displayName.toString()
+                                        )
+                                    }
+//                                    binding.progressBar.visibility = View.GONE
+//                                    startActivity(Intent(this@SignInActivity,HomeActivity::class.java))
                                 }
 
                                 is AuthResult.Error -> {

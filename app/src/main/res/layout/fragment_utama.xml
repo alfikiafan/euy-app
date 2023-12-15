@@ -87,7 +87,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Nasi Goreng"
+                        android:text="Chicken"
                         android:paddingStart="8dp"
                         style="@style/Text.Body.BlackSemiBold"
                         app:layout_constraintTop_toTopOf="parent"
@@ -120,7 +120,7 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvMakananSehat"
+                    android:id="@+id/rvChickenRecipe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -135,7 +135,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginBottom="100dp"
                 android:background="@drawable/bg_white_oval"
                 android:layout_marginTop="12dp"
                 android:padding="8dp">
@@ -148,7 +147,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Makanan Sehat"
+                        android:text="Beef"
                         android:paddingStart="8dp"
                         style="@style/Text.Body.BlackSemiBold"
                         app:layout_constraintTop_toTopOf="parent"
@@ -182,7 +181,128 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvNasiGoreng"
+                    android:id="@+id/rvBeefRecipe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    tools:listitem="@layout/item_food_layout"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    tools:itemCount="3"
+                    app:spanCount="3"
+                    android:clipToPadding="false"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_white_oval"
+                android:layout_marginTop="12dp"
+                android:padding="8dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lamb"
+                        android:paddingStart="8dp"
+                        style="@style/Text.Body.BlackSemiBold"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Semua"
+                            android:textSize="12sp"
+                            style="@style/Text.OrangeBold"/>
+
+                        <ImageView
+                            android:layout_width="19dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:src="@drawable/ic_arrow_right"/>
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvLambRecipe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    tools:listitem="@layout/item_food_layout"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    tools:itemCount="3"
+                    app:spanCount="3"
+                    android:clipToPadding="false"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="100dp"
+                android:background="@drawable/bg_white_oval"
+                android:layout_marginTop="12dp"
+                android:padding="8dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fish"
+                        android:paddingStart="8dp"
+                        style="@style/Text.Body.BlackSemiBold"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Semua"
+                            android:textSize="12sp"
+                            style="@style/Text.OrangeBold"/>
+
+                        <ImageView
+                            android:layout_width="19dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:src="@drawable/ic_arrow_right"/>
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvFishRecipe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"

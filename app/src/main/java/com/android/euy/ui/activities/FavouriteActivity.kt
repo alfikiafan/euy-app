@@ -6,10 +6,13 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.euy.R
 import com.android.euy.data.model.Food
+import com.android.euy.data.model.Recipe
 import com.android.euy.data.utils.dummy
 import com.android.euy.databinding.ActivityFavouriteBinding
 import com.android.euy.ui.adapters.MakananAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavouriteActivity : AppCompatActivity(),MakananAdapter.OnItemClickListener {
     private lateinit var binding: ActivityFavouriteBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,16 +25,16 @@ class FavouriteActivity : AppCompatActivity(),MakananAdapter.OnItemClickListener
             onBackPressedDispatcher.onBackPressed()
         }
 
-        var adapter = MakananAdapter(this@FavouriteActivity,3, dummy.makananSehatList)
+        var adapter = MakananAdapter(this@FavouriteActivity,3, ArrayList())
         adapter.setOnItemClickListener(this)
         binding.rvFav.setHasFixedSize(true)
         binding.rvFav.layoutManager = LinearLayoutManager(this@FavouriteActivity)
         binding.rvFav.adapter = adapter
     }
 
-    override fun onItemClick(food: Food) {
+    override fun onItemClick(recipe: Recipe) {
         val intent = Intent(this, DetailActivity::class.java)
-//        intent.putExtra("movie", food)
+        intent.putExtra("recipe", recipe)
         startActivity(intent)
     }
 }

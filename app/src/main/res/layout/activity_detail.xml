@@ -31,12 +31,16 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/ivDetailRecipe"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:scaleType="centerCrop"
                 android:paddingVertical="12dp"
+                android:layout_marginVertical="16dp"
                 android:src="@drawable/salad_buah"/>
 
             <TextView
+                android:id="@+id/tvRecipeName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Salad Buah"
@@ -63,6 +67,7 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_bahan"/>
                     <TextView
+                        android:id="@+id/tvTotalBahan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="20 Bahan"
@@ -90,12 +95,13 @@
                 style="@style/Text.OrangeBold"/>
 
             <TextView
+                android:id="@+id/tvDescription"
+                style="@style/Text.Body.Black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Text.Body.Black"
                 android:paddingHorizontal="24dp"
                 android:paddingVertical="12dp"
-                android:text="Salad buah bukan hanya sekadar hidangan yang enak dan lezat, tetapi juga merupakan kombinasi sempurna antara rasa dan gizi. Dengan menggabungkan berbagai jenis buah segar, Anda tidak hanya dapat menikmati cita rasa yang menggoda tetapi juga mendapatkan manfaat kesehatan yang luar biasa."/>
+                android:text="Salad buah bukan hanya sekadar hidangan yang enak dan lezat, tetapi juga merupakan kombinasi sempurna antara rasa dan gizi. Dengan menggabungkan berbagai jenis buah segar, Anda tidak hanya dapat menikmati cita rasa yang menggoda tetapi juga mendapatkan manfaat kesehatan yang luar biasa." />
 
             <TextView
                 android:layout_width="match_parent"
@@ -111,6 +117,7 @@
                 android:paddingVertical="8dp">
 
                 <TextView
+                    android:id="@+id/tvBahan"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="parent"
@@ -118,89 +125,90 @@
                     android:text="- Buah Pisang"
                     style="@style/Text.Body.Black"/>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    style="@style/Text.Body.Black"
-                    android:text="500 g"/>
+                <!--                <TextView-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    app:layout_constraintTop_toTopOf="parent"-->
+                <!--                    app:layout_constraintRight_toRightOf="parent"-->
+                <!--                    style="@style/Text.Body.Black"-->
+                <!--                    android:text="500 g"/>-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="24dp"
-                android:paddingVertical="8dp">
+            <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:paddingHorizontal="24dp"-->
+            <!--                android:paddingVertical="8dp">-->
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:text="- Buah Strawberry"
-                    style="@style/Text.Body.Black"/>
+            <!--                <TextView-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    app:layout_constraintTop_toTopOf="parent"-->
+            <!--                    app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--                    android:text="- Buah Strawberry"-->
+            <!--                    style="@style/Text.Body.Black"/>-->
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    style="@style/Text.Body.Black"
-                    android:text="500 g"/>
+            <!--                <TextView-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    app:layout_constraintTop_toTopOf="parent"-->
+            <!--                    app:layout_constraintRight_toRightOf="parent"-->
+            <!--                    style="@style/Text.Body.Black"-->
+            <!--                    android:text="500 g"/>-->
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="24dp"
-                android:paddingVertical="8dp">
+            <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:paddingHorizontal="24dp"-->
+            <!--                android:paddingVertical="8dp">-->
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:text="- Buah Apel"
-                    style="@style/Text.Body.Black"/>
+            <!--                <TextView-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    app:layout_constraintTop_toTopOf="parent"-->
+            <!--                    app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--                    android:text="- Buah Apel"-->
+            <!--                    style="@style/Text.Body.Black"/>-->
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    style="@style/Text.Body.Black"
-                    android:text="300 g"/>
+            <!--                <TextView-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    app:layout_constraintTop_toTopOf="parent"-->
+            <!--                    app:layout_constraintRight_toRightOf="parent"-->
+            <!--                    style="@style/Text.Body.Black"-->
+            <!--                    android:text="300 g"/>-->
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="24dp"
-                android:paddingVertical="8dp">
+            <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:paddingHorizontal="24dp"-->
+            <!--                android:paddingVertical="8dp">-->
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    android:text="- Buah Nanas"
-                    style="@style/Text.Body.Black"/>
+            <!--                <TextView-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    app:layout_constraintTop_toTopOf="parent"-->
+            <!--                    app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--                    android:text="- Buah Nanas"-->
+            <!--                    style="@style/Text.Body.Black"/>-->
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    style="@style/Text.Body.Black"
-                    android:text="100 g"/>
+            <!--                <TextView-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    app:layout_constraintTop_toTopOf="parent"-->
+            <!--                    app:layout_constraintRight_toRightOf="parent"-->
+            <!--                    style="@style/Text.Body.Black"-->
+            <!--                    android:text="100 g"/>-->
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
             <TextView
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Cara Pembuatan"
@@ -209,6 +217,7 @@
                 style="@style/Text.OrangeBold"/>
 
             <TextView
+                android:id="@+id/tvSteps"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Text.Body.Black"

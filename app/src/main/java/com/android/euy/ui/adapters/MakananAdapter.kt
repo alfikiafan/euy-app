@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.euy.data.model.Food
+import com.android.euy.data.model.Recipe
 import com.android.euy.databinding.ItemFavoriteLayoutBinding
 import com.android.euy.databinding.ItemFood2LayoutBinding
 import com.android.euy.databinding.ItemFoodLayoutBinding
 import com.android.euy.databinding.ItemResepLayoutBinding
+import com.bumptech.glide.Glide
 
-class MakananAdapter(private val mContext: Context, private val TYPE: Int, private val mFoodList: List<Food>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MakananAdapter(private val mContext: Context, private val TYPE: Int, private val mFoodList: ArrayList<Recipe>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var itemClickListener: OnItemClickListener? = null
 
@@ -79,36 +81,42 @@ class MakananAdapter(private val mContext: Context, private val TYPE: Int, priva
     }
 
     private inner class ExploreHolder(val binding: ItemFood2LayoutBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(food: Food) {
-            binding.imgFood.setImageResource(food.url)
-            binding.namaFood.text = food.name
-            binding.timeCook.text = food.time
+        fun bind(food: Recipe) {
+            Glide.with(mContext).load(food.image)
+                .into(binding.imgFood)
+            binding.tvNamaFood.text = food.name
+            binding.tvTotalBahan.text = "${food.ingredients.size} Bahan"
         }
     }
 
     private inner class UtamaHolder(val binding: ItemFoodLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(food: Food) {
-            binding.imgFood.setImageResource(food.url)
+        fun bind(food: Recipe) {
+            Glide.with(mContext).load(food.image)
+                .into(binding.imgFood)
             binding.nameFood.text = food.name
         }
     }
 
     private inner class FavoriteHolder(val binding: ItemFavoriteLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(food: Food) {
-            binding.imgFav.setImageResource(food.url)
+        fun bind(food: Recipe) {
+            Glide.with(mContext).load(food.image)
+                .into(binding.imgFav)
             binding.nameFood.text = food.name
         }
     }
 
     private inner class ResepHolder(val binding: ItemResepLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(food: Food?) {
+        fun bind(food: Recipe) {
+            Glide.with(mContext).load(food.image)
+                .into(binding.imgResep)
+            binding.tvRecipeName.text = food.name
         }
     }
 
     interface OnItemClickListener {
-        fun onItemClick(food: Food)
+        fun onItemClick(food: Recipe)
     }
 }
