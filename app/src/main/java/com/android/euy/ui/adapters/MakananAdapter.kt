@@ -40,8 +40,6 @@ class MakananAdapter(private val mContext: Context, private val TYPE: Int, priva
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-//        val binding = ItemProductDaurMarketBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-//        return ViewHolder(binding)
         return when (viewType) {
             VIEW_TYPE_LAYOUT_1 -> {
                 val view = ItemFoodLayoutBinding.inflate(LayoutInflater.from(mContext),parent,false)
@@ -113,6 +111,7 @@ class MakananAdapter(private val mContext: Context, private val TYPE: Int, priva
             Glide.with(mContext).load(food.image)
                 .into(binding.imgResep)
             binding.tvRecipeName.text = food.name
+            binding.tvTotalBahan.text = "${food.ingredients.size} Bahan"
         }
     }
 

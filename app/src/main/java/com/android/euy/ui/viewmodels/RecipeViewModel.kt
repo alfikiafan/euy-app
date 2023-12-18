@@ -9,6 +9,7 @@ import com.android.euy.data.model.LoginSSORequest
 import com.android.euy.data.model.OurChoicesResponse
 import com.android.euy.data.model.Recipe
 import com.android.euy.data.model.RecipeResponse
+import com.android.euy.data.model.UserViewRecipeRequest
 import com.android.euy.data.repositories.RecipeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.disposables.CompositeDisposable
@@ -30,7 +31,7 @@ class RecipeViewModel @Inject constructor(private val repository: RecipeReposito
         compositeDisposable.add(
             repository.getRecipeFromIngredients(listBahan,token).subscribe(
                 {
-                    Log.e("success", it.toString())
+                    Log.e("success", it.data.recipes.size.toString())
                     _recipeList.postValue(it)
                 },
                 {
@@ -44,7 +45,7 @@ class RecipeViewModel @Inject constructor(private val repository: RecipeReposito
         compositeDisposable.add(
             repository.getRecipeFromName(nama,token).subscribe(
                 {
-                    Log.e("success", it.toString())
+                    Log.e("success", it.data.recipes.size.toString())
                     _searchedList.postValue(it)
                 },
                 {
@@ -54,13 +55,26 @@ class RecipeViewModel @Inject constructor(private val repository: RecipeReposito
         )
     }
 
-
     fun getOurChoices(token:String){
         compositeDisposable.add(
             repository.getOurChoices(token).subscribe(
                 {
                     Log.e("success", it.toString())
                     _ourChoicesList.postValue(it)
+                },
+                {
+                    Log.e("error", it.message.toString())
+                }
+            )
+        )
+    }
+
+    fun postViewedRecipe(userId:String, recipeId: String, token: String){
+        compositeDisposable.add(
+            repository.postViewedRecipe(UserViewRecipeRequest(userId,recipeId),token).subscribe(
+                {
+                    Log.e("success", it.toString())
+//                    _ourChoicesList.postValue(it)
                 },
                 {
                     Log.e("error", it.message.toString())

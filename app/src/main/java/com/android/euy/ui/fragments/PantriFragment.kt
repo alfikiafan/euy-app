@@ -7,6 +7,7 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import com.android.euy.databinding.FragmentPantriBinding
 import com.android.euy.ui.activities.ResepActivity
@@ -41,14 +42,13 @@ class PantriFragment : Fragment() {
         binding.rvPantri.adapter = adapter
 
         binding.btnLihatResep.setOnClickListener {
-            Log.e("RESEP",listBahan.joinToString())
             val intent = Intent(this@PantriFragment.context,ResepActivity::class.java)
             intent.putExtra("bahan",listBahan.joinToString())
             startActivity(intent)
         }
 
-        binding.edtTxtBahan.setOnKeyListener { _, keyCode, event ->
-            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+        binding.edtTxtBahan.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 val newItem = binding.edtTxtBahan.text.toString().trim()
 
                 if (newItem.isNotEmpty()) {
@@ -56,10 +56,23 @@ class PantriFragment : Fragment() {
                     adapter.notifyDataSetChanged()
                     binding.edtTxtBahan.text.clear()
                 }
-                return@setOnKeyListener true
             }
-            false
+            true
         }
+
+//        binding.edtTxtBahan.setOnKeyListener { _, keyCode, event ->
+//            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER ) {
+//                val newItem = binding.edtTxtBahan.text.toString().trim()
+//
+//                if (newItem.isNotEmpty()) {
+//                    listBahan.add(newItem)
+//                    adapter.notifyDataSetChanged()
+//                    binding.edtTxtBahan.text.clear()
+//                }
+//                return@setOnKeyListener true
+//            }
+//            false
+//        }
 
     }
 

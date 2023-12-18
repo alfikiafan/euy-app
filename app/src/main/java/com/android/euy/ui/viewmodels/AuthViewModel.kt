@@ -1,13 +1,12 @@
 package com.android.euy.ui.viewmodels
 
-import android.app.Application
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.euy.data.model.AuthResult
 import com.android.euy.data.model.LoginSSORequest
+import com.android.euy.data.model.LoginSSOResponse
 import com.android.euy.data.repositories.UserRepository
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseUser
@@ -27,15 +26,15 @@ class AuthViewModel @Inject constructor(private val repository: UserRepository):
     private val auth = Firebase.auth
     val db = Firebase.firestore
     private val compositeDisposable = CompositeDisposable()
-    private val _accessToken = MutableLiveData<String>()
-    val accessToken: LiveData<String> = _accessToken
+    private val _sso = MutableLiveData<LoginSSOResponse>()
+    val sso: LiveData<LoginSSOResponse> = _sso
 
     fun signInWithSSO(uid: String, provider: String, email: String, name: String){
         compositeDisposable.add(
             repository.login(LoginSSORequest(uid,provider,email,name)).subscribe(
                 {
                     Log.e("success", it.toString())
-                    _accessToken.postValue(it.accessToken)
+                    _sso.postValue(it)
                 },
                 {
                     Log.e("error", it.message.toString())

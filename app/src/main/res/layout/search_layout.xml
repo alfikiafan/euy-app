@@ -6,6 +6,8 @@
     android:background="@drawable/bg_white_oval"
     android:drawableStart="@drawable/ic_search"
     android:hint="Cari Resep"
+    android:imeOptions="actionSearch"
+    android:inputType="text"
     style="@style/Text.Body.BlackSemiBold"
     android:paddingHorizontal="24dp"
     android:drawablePadding="24dp"

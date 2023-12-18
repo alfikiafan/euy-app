@@ -48,9 +48,10 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_bahan"/>
             <TextView
+                android:id="@+id/tvTotalBahan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="20 Menit"
+                android:text="20 Bahan"
                 android:textSize="13sp"
                 android:paddingHorizontal="5dp"
 

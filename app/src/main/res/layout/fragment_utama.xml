@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,317 +9,345 @@
     android:background="@color/lightGrey">
 
     <LinearLayout
-        android:id="@+id/ll_toolbar_utama"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/bg_gradient_with_bottom_left_right_radius"
-        android:gravity="start"
-        android:paddingHorizontal="24dp"
-        android:paddingVertical="24dp">
-
-        <ImageView
-            android:id="@+id/btnFav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:paddingVertical="8dp"
-            android:src="@drawable/ic_fav"
-            app:tint="@color/white" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rekomendasi Khusus\nuntuk Dapur Anda"
-            android:textSize="22sp"
-            style="@style/Text.Body.WhiteSemiBold"/>
-
-        <include
-            layout="@layout/search_layout"
-            android:id="@+id/searchEditText"
-            app:layout_constraintDimensionRatio="1:1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="24dp"/>
-
-
-
-    </LinearLayout>
-
-    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toBottomOf="@id/ll_toolbar_utama">
-
+        android:orientation="vertical">
         <LinearLayout
+            android:id="@+id/ll_toolbar_utama"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/bg_gradient_with_bottom_left_right_radius"
+            android:gravity="start"
             android:paddingHorizontal="24dp"
-            android:paddingVertical="12dp">
+            android:paddingVertical="24dp">
+
+            <ImageView
+                android:id="@+id/btnFav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:paddingVertical="8dp"
+                android:src="@drawable/ic_fav"
+                app:tint="@color/white" />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rekomendasi Khusus\nuntuk Dapur Anda"
+                android:textSize="22sp"
+                style="@style/Text.Body.WhiteSemiBold"/>
+
+            <include
+                layout="@layout/search_layout"
+                android:id="@+id/searchEditText"
+                app:layout_constraintDimensionRatio="1:1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mau masak apa hari ini?"
-                style="@style/Text.Body.BlackSemiBold"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Lihat rekomendasi resep dari bahanmu"
-                style="@style/Text.Body.Black"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/bg_white_oval"
-                android:layout_marginVertical="12dp"
-                android:padding="8dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Chicken"
-                        android:paddingStart="8dp"
-                        style="@style/Text.Body.BlackSemiBold"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"/>
-
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:gravity="center"-->
-<!--                        android:orientation="horizontal"-->
-<!--                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                        app:layout_constraintTop_toTopOf="parent">-->
-
-<!--                        <TextView-->
-<!--                            style="@style/Text.OrangeBold"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="Semua"-->
-<!--                            android:textSize="12sp" />-->
-
-<!--                        <ImageView-->
-<!--                            android:layout_width="19dp"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginLeft="5dp"-->
-<!--                            android:src="@drawable/ic_arrow_right" />-->
-
-<!--                    </LinearLayout>-->
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_marginVertical="24dp"/>
 
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvChickenRecipe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    tools:listitem="@layout/item_food_layout"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    tools:itemCount="3"
-                    app:spanCount="3"
-                    android:clipToPadding="false"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/bg_white_oval"
-                android:layout_marginTop="12dp"
-                android:padding="8dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Beef"
-                        android:paddingStart="8dp"
-                        style="@style/Text.Body.BlackSemiBold"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"/>
-
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:gravity="center"-->
-<!--                        android:orientation="horizontal"-->
-<!--                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                        app:layout_constraintTop_toTopOf="parent">-->
-
-<!--                        <TextView-->
-<!--                            style="@style/Text.OrangeBold"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="Semua"-->
-<!--                            android:textSize="12sp" />-->
-
-<!--                        <ImageView-->
-<!--                            android:id="@+id/icon_arrow_right"-->
-<!--                            android:layout_width="19dp"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginLeft="5dp"-->
-<!--                            android:src="@drawable/ic_arrow_right" />-->
-
-<!--                    </LinearLayout>-->
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvBeefRecipe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    tools:listitem="@layout/item_food_layout"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    tools:itemCount="3"
-                    app:spanCount="3"
-                    android:clipToPadding="false"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/bg_white_oval"
-                android:layout_marginTop="12dp"
-                android:padding="8dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Lamb"
-                        android:paddingStart="8dp"
-                        style="@style/Text.Body.BlackSemiBold"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"/>
-
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:gravity="center"-->
-<!--                        android:orientation="horizontal"-->
-<!--                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                        app:layout_constraintTop_toTopOf="parent">-->
-
-<!--                        <TextView-->
-<!--                            style="@style/Text.OrangeBold"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="Semua"-->
-<!--                            android:textSize="12sp" />-->
-
-<!--                        <ImageView-->
-<!--                            android:layout_width="19dp"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginLeft="5dp"-->
-<!--                            android:src="@drawable/ic_arrow_right" />-->
-
-<!--                    </LinearLayout>-->
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvLambRecipe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    tools:listitem="@layout/item_food_layout"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    tools:itemCount="3"
-                    app:spanCount="3"
-                    android:clipToPadding="false"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="100dp"
-                android:background="@drawable/bg_white_oval"
-                android:layout_marginTop="12dp"
-                android:padding="8dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Fish"
-                        android:paddingStart="8dp"
-                        style="@style/Text.Body.BlackSemiBold"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"/>
-
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:gravity="center"-->
-<!--                        android:orientation="horizontal"-->
-<!--                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                        app:layout_constraintTop_toTopOf="parent">-->
-
-<!--                        <TextView-->
-<!--                            style="@style/Text.OrangeBold"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:text="Semua"-->
-<!--                            android:textSize="12sp" />-->
-
-<!--                        <ImageView-->
-<!--                            android:layout_width="19dp"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginLeft="5dp"-->
-<!--                            android:src="@drawable/ic_arrow_right" />-->
-
-<!--                    </LinearLayout>-->
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvFishRecipe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    tools:listitem="@layout/item_food_layout"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    tools:itemCount="3"
-                    app:spanCount="3"
-                    android:clipToPadding="false"/>
-            </LinearLayout>
 
         </LinearLayout>
 
+        <ScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/ll_toolbar_utama">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="12dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Mau masak apa hari ini?"
+                    style="@style/Text.Body.BlackSemiBold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lihat rekomendasi resep dari bahanmu"
+                    style="@style/Text.Body.Black"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_chicken"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_white_oval"
+                    android:layout_marginVertical="12dp"
+                    android:padding="8dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Chicken"
+                            android:paddingStart="8dp"
+                            style="@style/Text.Body.BlackSemiBold"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Semua"
+                                android:textSize="12sp"
+                                style="@style/Text.OrangeBold"/>
+
+                            <ImageView
+                                android:layout_width="19dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:src="@drawable/ic_arrow_right"/>
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvChickenRecipe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        tools:listitem="@layout/item_food_layout"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        tools:itemCount="3"
+                        app:spanCount="3"
+                        android:clipToPadding="false"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_beef"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_white_oval"
+                    android:layout_marginTop="12dp"
+                    android:padding="8dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Beef"
+                            android:paddingStart="8dp"
+                            style="@style/Text.Body.BlackSemiBold"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Semua"
+                                android:textSize="12sp"
+                                style="@style/Text.OrangeBold"/>
+
+                            <ImageView
+                                android:id="@+id/icon_arrow_right"
+                                android:layout_width="19dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:src="@drawable/ic_arrow_right"/>
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvBeefRecipe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        tools:listitem="@layout/item_food_layout"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        tools:itemCount="3"
+                        app:spanCount="3"
+                        android:clipToPadding="false"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_lamb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_white_oval"
+                    android:layout_marginTop="12dp"
+                    android:padding="8dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Lamb"
+                            android:paddingStart="8dp"
+                            style="@style/Text.Body.BlackSemiBold"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Semua"
+                                android:textSize="12sp"
+                                style="@style/Text.OrangeBold"/>
+
+                            <ImageView
+                                android:layout_width="19dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:src="@drawable/ic_arrow_right"/>
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvLambRecipe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        tools:listitem="@layout/item_food_layout"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        tools:itemCount="3"
+                        app:spanCount="3"
+                        android:clipToPadding="false"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_fish"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="100dp"
+                    android:background="@drawable/bg_white_oval"
+                    android:layout_marginTop="12dp"
+                    android:padding="8dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fish"
+                            android:paddingStart="8dp"
+                            style="@style/Text.Body.BlackSemiBold"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Semua"
+                                android:textSize="12sp"
+                                style="@style/Text.OrangeBold"/>
+
+                            <ImageView
+                                android:layout_width="19dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:src="@drawable/ic_arrow_right"/>
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvFishRecipe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        tools:listitem="@layout/item_food_layout"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        tools:itemCount="3"
+                        app:spanCount="3"
+                        android:clipToPadding="false"/>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSearch"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black75"
+        android:gravity="center">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:progressTint="@color/orange"
+            android:indeterminateTint="@color/orange"
+            android:progressBackgroundTint="@color/orange"
+            android:visibility="visible"
+            android:indeterminate="false"/>
+    </LinearLayout>
 
 
 
-    </ScrollView>
-
-
-
-</LinearLayout>
+</FrameLayout>

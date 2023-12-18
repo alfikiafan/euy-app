@@ -1,6 +1,5 @@
 package com.android.euy.ui.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,14 +16,15 @@ class ExplorePagingAdapter(private val listener: (View, Recipe) -> Unit): Paging
     override fun onBindViewHolder(holder: ExplorePagingAdapter.ViewHolder, position: Int) {
         val recipe = getItem(position)
         with(holder) {
-            Log.e("EXPLORE+ADAPTER",recipe.toString())
-            binding.tvNamaFood.text = recipe!!.name
-            Glide.with(holder.itemView.context)
-                .load(recipe.image)
-                .into(binding.imgFood)
-            binding.tvTotalBahan.text = recipe.ingredients.size.toString() + " Bahan"
-            binding.root.setOnClickListener {
-                listener(it,recipe)
+            recipe?.let {
+                binding.tvNamaFood.text = it.name
+                Glide.with(holder.itemView.context)
+                    .load(it.image)
+                    .into(binding.imgFood)
+                binding.tvTotalBahan.text = it.ingredients.size.toString() + " Bahan"
+                binding.root.setOnClickListener { view ->
+                    listener(view, it)
+                }
             }
         }
     }
@@ -37,11 +37,11 @@ class ExplorePagingAdapter(private val listener: (View, Recipe) -> Unit): Paging
     companion object {
         val differCallback = object : DiffUtil.ItemCallback<Recipe>() {
             override fun areItemsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
-                return oldItem.id == newItem.id
+                return oldItem.name == newItem.name
             }
 
             override fun areContentsTheSame(oldItem: Recipe, newItem: Recipe): Boolean {
-                return oldItem.id == newItem.id
+                return oldItem.name == newItem.name
             }
         }
     }

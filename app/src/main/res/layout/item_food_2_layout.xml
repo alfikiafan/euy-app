@@ -34,6 +34,7 @@
                 android:layout_gravity="end"
                 android:background="@drawable/bg_blur"
                 android:layout_margin="5dp"
+                android:padding="3dp"
                 android:gravity="center">
 
                 <ImageView

@@ -38,8 +38,10 @@
             android:id="@+id/nameFood"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Salad Buah"
-            android:textSize="18sp"
+            android:text="Ayam Goreng Bumbu Kuning"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textSize="16sp"
             style="@style/Text.Body.WhiteSemiBold"
 
             />

@@ -16,13 +16,12 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class ExplorePagingRepository @Inject constructor(private val api: ApiService) {
-    private fun authorization(token: String) = "Bearer " + token
 
     fun getPagingStories(token: String, query: String) : Flowable<PagingData<Recipe>> {
         return Pager(
             config = PagingConfig(
-                pageSize = 5, maxSize = 20,
-                enablePlaceholders = false),
+                pageSize = 10
+                ),
             pagingSourceFactory = { ExplorePagingSource(token,api,query) }
         ).flowable
     }

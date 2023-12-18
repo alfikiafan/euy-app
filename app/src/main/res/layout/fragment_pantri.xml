@@ -68,6 +68,9 @@
             android:layout_height="match_parent"
             android:padding="12dp"
             android:layout_marginTop="8dp"
+            android:maxLines="1"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
             android:background="@drawable/bg_white_with_grey_border"
             android:hint="bahan kamu"/>
 
@@ -98,7 +101,7 @@
         android:textAllCaps="false"
         android:background="@drawable/bg_orange_oval"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="50dp"
         />
 
 

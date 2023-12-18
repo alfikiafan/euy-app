@@ -46,7 +46,16 @@ class SignInActivity : AppCompatActivity() {
                                 is AuthResult.Success -> {
                                     // Handle successful sign-in
                                     result.user?.let {
-                                        viewModel.signInWithSSO(result.user.uid,"email",email,"")
+                                        viewModel.getUserFromDB(email).addOnSuccessListener {
+                                            for (document in it) {
+                                                val name = document.getString("name")
+                                                if (name != null) {
+                                                    viewModel.signInWithSSO(result.user.uid,"email",email,name)
+                                                }
+                                                break
+                                            }
+                                        }
+//
                                     }
 //                                    binding.progressBar.visibility = View.GONE
 //                                    startActivity(Intent(this@SignInActivity,HomeActivity::class.java))
@@ -73,9 +82,10 @@ class SignInActivity : AppCompatActivity() {
             signInWithGoogle()
         }
 
-        viewModel.accessToken.observe(this) {
+        viewModel.sso.observe(this) {
             if (it != null) {
-                sharedPreferences.edit().putString("token", it).apply()
+                sharedPreferences.edit().putString("token", it.accessToken).apply()
+                sharedPreferences.edit().putString("userId", it.data.sso.userId).apply()
                 binding.progressBar.visibility = View.GONE
                 startActivity(Intent(this@SignInActivity, HomeActivity::class.java))
             } else {

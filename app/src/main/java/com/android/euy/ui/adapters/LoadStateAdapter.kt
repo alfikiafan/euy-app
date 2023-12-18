@@ -24,7 +24,7 @@ class LoadStateAdapter(private val callback: View.OnClickListener) : LoadStateAd
       binding.textError.visibility = if (loadState is Error) View.VISIBLE else View.GONE
 
       binding.btnRetry.setOnClickListener {
-        callback
+        callback.onClick(it)
       }
     }
   }

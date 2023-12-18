@@ -4,6 +4,8 @@ import com.android.euy.data.model.CommonResponse
 import com.android.euy.data.model.OurChoicesResponse
 import com.android.euy.data.model.Recipe
 import com.android.euy.data.model.RecipeResponse
+import com.android.euy.data.model.UserViewRecipeRequest
+import com.android.euy.data.model.UserViewRecipeResponse
 import com.android.euy.data.services.ApiService
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -27,5 +29,9 @@ class RecipeRepository @Inject constructor(private val api: ApiService) {
             .observeOn((AndroidSchedulers.mainThread()))
     }
 
+    fun postViewedRecipe(req : UserViewRecipeRequest, token: String): Single<UserViewRecipeResponse>{
+        return api.postViewedRecipe(token,req).subscribeOn(Schedulers.io())
+            .observeOn((AndroidSchedulers.mainThread()))
+    }
 
 }

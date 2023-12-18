@@ -32,6 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:progressTint="@color/orange"
+        android:indeterminateTint="@color/orange"
         android:progressBackgroundTint="@color/orange"
         android:visibility="gone"
         android:indeterminate="false"/>
