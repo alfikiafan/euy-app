@@ -30,6 +30,7 @@
                 android:layout_gravity="end"
                 android:paddingVertical="8dp"
                 android:src="@drawable/ic_fav"
+                android:visibility="invisible"
                 app:tint="@color/white" />
 
             <TextView
@@ -102,23 +103,24 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
                             android:gravity="center"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent">
+                            android:orientation="horizontal"
+                            android:visibility="invisible"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
+                                style="@style/Text.OrangeBold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Semua"
-                                android:textSize="12sp"
-                                style="@style/Text.OrangeBold"/>
+                                android:textSize="12sp" />
 
                             <ImageView
                                 android:layout_width="19dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
-                                android:src="@drawable/ic_arrow_right"/>
+                                android:src="@drawable/ic_arrow_right" />
 
                         </LinearLayout>
 
@@ -163,24 +165,25 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
                             android:gravity="center"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent">
+                            android:orientation="horizontal"
+                            android:visibility="invisible"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
+                                style="@style/Text.OrangeBold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Semua"
-                                android:textSize="12sp"
-                                style="@style/Text.OrangeBold"/>
+                                android:textSize="12sp" />
 
                             <ImageView
                                 android:id="@+id/icon_arrow_right"
                                 android:layout_width="19dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
-                                android:src="@drawable/ic_arrow_right"/>
+                                android:src="@drawable/ic_arrow_right" />
 
                         </LinearLayout>
 
@@ -225,23 +228,24 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
                             android:gravity="center"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent">
+                            android:orientation="horizontal"
+                            android:visibility="invisible"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
+                                style="@style/Text.OrangeBold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Semua"
-                                android:textSize="12sp"
-                                style="@style/Text.OrangeBold"/>
+                                android:textSize="12sp" />
 
                             <ImageView
                                 android:layout_width="19dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
-                                android:src="@drawable/ic_arrow_right"/>
+                                android:src="@drawable/ic_arrow_right" />
 
                         </LinearLayout>
 
@@ -287,23 +291,24 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
                             android:gravity="center"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent">
+                            android:orientation="horizontal"
+                            android:visibility="invisible"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
+                                style="@style/Text.OrangeBold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Semua"
-                                android:textSize="12sp"
-                                style="@style/Text.OrangeBold"/>
+                                android:textSize="12sp" />
 
                             <ImageView
                                 android:layout_width="19dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
-                                android:src="@drawable/ic_arrow_right"/>
+                                android:src="@drawable/ic_arrow_right" />
 
                         </LinearLayout>
 
