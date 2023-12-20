@@ -30,6 +30,7 @@
                 android:layout_gravity="end"
                 android:paddingVertical="8dp"
                 android:src="@drawable/ic_fav"
+                android:visibility="invisible"
                 app:tint="@color/white" />
 
             <TextView
