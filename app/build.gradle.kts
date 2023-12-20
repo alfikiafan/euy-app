@@ -54,7 +54,7 @@ dependencies {
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.10.0")
+    implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.6")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.6")
@@ -75,8 +75,6 @@ dependencies {
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.squareup.retrofit2:adapter-rxjava2:2.5.0")
-//    implementation ("io.reactivex.rxjava3:rxjava:3.0.13")
-//    implementation ("io.reactivex.rxjava3:rxandroid:3.0.0")
     implementation ("io.reactivex.rxjava2:rxjava:2.2.9")
     implementation ("io.reactivex.rxjava2:rxandroid:2.1.1")
 
@@ -93,7 +91,6 @@ dependencies {
 
     //paging
     implementation ("androidx.paging:paging-runtime-ktx:3.2.1")
-    implementation ("androidx.paging:paging-rxjava2:3.2.1")
-
+    implementation ("androidx.paging:paging-rxjava2-ktx:3.2.1")
 
 }

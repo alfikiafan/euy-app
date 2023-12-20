@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">EUY</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="default_client_id">904180149075-8eho3k38g7fla1aj3gpaq3j3equ97aed.apps.googleusercontent.com</string>
 </resources>
