@@ -1,4 +1,5 @@
 Flask
 pandas
+tensorflow
 tensorflow-recommenders
 numpy

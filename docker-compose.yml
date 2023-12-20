@@ -1,0 +1,50 @@
+services:
+  db:
+    image: mysql
+    env_file: ./.env
+    environment:
+      MYSQL_ROOT_PASSWORD: $DB_PASSWORD
+      MYSQL_DATABASE: $DB_NAME
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: "mysql -uroot -p$$MYSQL_ROOT_PASSWORD  -e 'SHOW databases'"
+      interval: 10s
+      retries: 3
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - euy-network
+  api:
+    image: euy-api-transaction
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    env_file: ./.env
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    environment:
+      - APP_KEY=$APP_KEY
+      - DB_HOSTNAME=$DB_HOSTNAME
+      - DB_NAME=$DB_NAME
+      - DB_USERNAME=$DB_USERNAME
+      - DB_PASSWORD=$DB_PASSWORD
+    networks:
+      - euy-network
+  model-api:
+    image: euy-model-api
+    build:
+      context: .
+      dockerfile: Dockerfile.model-api
+    networks:
+      - euy-network
+
+volumes:
+  db:
+
+networks:
+  euy-network:
+    driver: bridge

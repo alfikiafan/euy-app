@@ -23,7 +23,7 @@ def insert_recipe(db, name, ingredients, steps, loves, description, image):
 
 HOST = "localhost"
 USER = "root"
-PASSWORD = ""
+PASSWORD = "root"
 DATABASE = "euy_db"
 EXCEL_FILE = "data.xlsx"
 

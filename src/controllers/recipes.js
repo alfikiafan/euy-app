@@ -99,6 +99,7 @@ async function getRecipes (req, res) {
             }))
           }
 
+          console.log(`${config.modelHostname}/predict`)
           const response = await fetch(`${config.modelHostname}/predict`, {
             method: 'POST',
             headers: {
