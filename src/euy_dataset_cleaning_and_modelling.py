@@ -21,7 +21,6 @@ import pprint
 import re
 import os
 from google.colab import files
-from typing import Dict, Text
 from sklearn.model_selection import train_test_split
 
 import tensorflow_recommenders as tfrs
@@ -31,89 +30,89 @@ import tensorflow_recommenders as tfrs
 DATA KAGGLE
 """
 
-# files.upload()
+files.upload()
 
-# !unzip "archive.zip"
+!unzip "archive.zip"
 
-# dataset_directory = "/content"
-# dataset_ayam = pd.read_csv(f"{dataset_directory}/dataset-ayam.csv")
-# dataset_tempe = pd.read_csv(f"{dataset_directory}/dataset-tempe.csv")
-# dataset_sapi = pd.read_csv(f"{dataset_directory}/dataset-sapi.csv")
-# dataset_kambing = pd.read_csv(f"{dataset_directory}/dataset-kambing.csv")
-# dataset_ikan = pd.read_csv(f"{dataset_directory}/dataset-ikan.csv")
-# dataset_udang = pd.read_csv(f"{dataset_directory}/dataset-udang.csv")
-# dataset_telur = pd.read_csv(f"{dataset_directory}/dataset-telur.csv")
-# dataset_tahu = pd.read_csv(f"{dataset_directory}/dataset-tahu.csv")
+dataset_directory = "/content"
+dataset_ayam = pd.read_csv(f"{dataset_directory}/dataset-ayam.csv")
+dataset_tempe = pd.read_csv(f"{dataset_directory}/dataset-tempe.csv")
+dataset_sapi = pd.read_csv(f"{dataset_directory}/dataset-sapi.csv")
+dataset_kambing = pd.read_csv(f"{dataset_directory}/dataset-kambing.csv")
+dataset_ikan = pd.read_csv(f"{dataset_directory}/dataset-ikan.csv")
+dataset_udang = pd.read_csv(f"{dataset_directory}/dataset-udang.csv")
+dataset_telur = pd.read_csv(f"{dataset_directory}/dataset-telur.csv")
+dataset_tahu = pd.read_csv(f"{dataset_directory}/dataset-tahu.csv")
 
-# list_recipes_dataset = [
-#     dataset_ayam,
-#     dataset_tempe,
-#     dataset_sapi,
-#     dataset_kambing,
-#     dataset_ikan,
-#     dataset_udang,
-#     dataset_telur,
-#     dataset_tahu
-# ]
+list_recipes_dataset = [
+    dataset_ayam,
+    dataset_tempe,
+    dataset_sapi,
+    dataset_kambing,
+    dataset_ikan,
+    dataset_udang,
+    dataset_telur,
+    dataset_tahu
+]
 
 # Penggabungan DataFrame
 recipes_dataset = pd.concat(list_recipes_dataset, ignore_index=True)
 
-# titles_to_clean = recipes_dataset[recipes_dataset.iloc[:, 0].str.contains(r'[^A-Za-z\s]', regex=True)]
-# cleaned_titles = recipes_dataset.copy()
-# cleaned_titles['Title'] = cleaned_titles['Title'].apply(lambda x: re.sub(r'[^A-Za-z\s]', '', x))
-# cleaned_titles.to_csv('resep_cleaned.csv', index=False)
-# print("Data Title dengan sebelum pembersihan:")
-# print(titles_to_clean.iloc[:, 0])
-# # Menampilkan beberapa baris pertama dari DataFrame yang sudah dibersihkan
-# print("\nData Title setelah pembersihan:")
-# cleaned_titles.head()
+titles_to_clean = recipes_dataset[recipes_dataset.iloc[:, 0].str.contains(r'[^A-Za-z\s]', regex=True)]
+cleaned_titles = recipes_dataset.copy()
+cleaned_titles['Title'] = cleaned_titles['Title'].apply(lambda x: re.sub(r'[^A-Za-z\s]', '', x))
+cleaned_titles.to_csv('resep_cleaned.csv', index=False)
+print("Data Title dengan sebelum pembersihan:")
+print(titles_to_clean.iloc[:, 0])
+# Menampilkan beberapa baris pertama dari DataFrame yang sudah dibersihkan
+print("\nData Title setelah pembersihan:")
+cleaned_titles.head()
 
 """DATA RANKING BY LOVES"""
 
-# resep_cleaned = pd.read_csv('resep_cleaned.csv')
-# sorted_by_loves_descending = resep_cleaned.sort_values(by='Loves', ascending=False)
-# sorted_by_loves_descending.to_csv('sorted_by_loves_descending.csv', index=False)
-# sorted_by_loves_descending.head()
+resep_cleaned = pd.read_csv('resep_cleaned.csv')
+sorted_by_loves_descending = resep_cleaned.sort_values(by='Loves', ascending=False)
+sorted_by_loves_descending.to_csv('sorted_by_loves_descending.csv', index=False)
+sorted_by_loves_descending.head()
 
 """PENCARIAN DATA BERDASARKAN RESEP DAN LOVES"""
 
-# resep_cleaned = pd.read_csv('resep_cleaned.csv')
-# def cari_resep(keyword):
-#     # Mencari kata kunci pada judul resep
-#     hasil_pencarian = resep_cleaned[resep_cleaned['Title'].str.contains(keyword, case=False)]
+resep_cleaned = pd.read_csv('resep_cleaned.csv')
+def cari_resep(keyword):
+    # Mencari kata kunci pada judul resep
+    hasil_pencarian = resep_cleaned[resep_cleaned['Title'].str.contains(keyword, case=False)]
 
-#     if len(hasil_pencarian) > 0:
-#         hasil_pencarian = hasil_pencarian.sort_values(by='Loves', ascending=False).head(5)
-#         return hasil_pencarian[['Title', 'Loves']]
-#     else:
-#         return "Tidak ditemukan resep dengan kata kunci tersebut."
-# hasil = cari_resep('ayam')
-# print(hasil)
+    if len(hasil_pencarian) > 0:
+        hasil_pencarian = hasil_pencarian.sort_values(by='Loves', ascending=False).head(5)
+        return hasil_pencarian[['Title', 'Loves']]
+    else:
+        return "Tidak ditemukan resep dengan kata kunci tersebut."
+hasil = cari_resep('ayam')
+print(hasil)
 
 """USER CLICKED DATASET SAMPLING"""
 
-# # Load recipe data from 'resep_cleaned.csv'
-# recipes_df = pd.read_csv('resep_cleaned.csv')
+# Load recipe data from 'resep_cleaned.csv'
+recipes_df = pd.read_csv('resep_cleaned.csv')
 
-# # Add a new 'recipe_id' column based on the order of the recipes
-# recipes_df['recipe_id'] = range(1, len(recipes_df) + 1)
+# Add a new 'recipe_id' column based on the order of the recipes
+recipes_df['recipe_id'] = range(1, len(recipes_df) + 1)
 
-# # Generating user clicked recipes dataset with trends and possibility of not clicking
-# def generate_user_clicked_data(num_users, cycles, recipes_df):
-#     user_clicked_data = []
-#     for user_id in range(1, num_users + 1):
-#         # Randomly select a starting recipe as the user's trend
-#         trend_recipe = random.choice(recipes_df['recipe_id'])
+# Generating user clicked recipes dataset with trends and possibility of not clicking
+def generate_user_clicked_data(num_users, cycles, recipes_df):
+    user_clicked_data = []
+    for user_id in range(1, num_users + 1):
+        # Randomly select a starting recipe as the user's trend
+        trend_recipe = random.choice(recipes_df['recipe_id'])
 
-#         for cycle in range(1, cycles + 1):
-#             # Users have a trend for a specific recipe during each cycle
-#             for _, recipe in recipes_df.iterrows():
-#                 # Introduce a probability of not clicking a recipe
-#                 if random.random() < random.uniform(0.0001, 0.001):
-#                     user_clicked_data.extend([{'user_id': user_id, 'recipe_id': recipe['recipe_id'], 'recipe_title': recipe['Title']}] * random.randint(1, 5))
+        for cycle in range(1, cycles + 1):
+            # Users have a trend for a specific recipe during each cycle
+            for _, recipe in recipes_df.iterrows():
+                # Introduce a probability of not clicking a recipe
+                if random.random() < random.uniform(0.0001, 0.001):
+                    user_clicked_data.extend([{'user_id': user_id, 'recipe_id': recipe['recipe_id'], 'recipe_title': recipe['Title']}] * random.randint(1, 5))
 
-#     return pd.DataFrame(user_clicked_data)
+    return pd.DataFrame(user_clicked_data)
 
 # # Generate dataset with 100 users and 5 cycles
 # dataset = generate_user_clicked_data(num_users=100, cycles=5, recipes_df=recipes_df)
@@ -121,16 +120,16 @@ recipes_dataset = pd.concat(list_recipes_dataset, ignore_index=True)
 # # Save the dataset to a CSV file
 # dataset.to_csv('user_clicked_recipes.csv', index=False)
 
-# print("Dataset generated and saved as 'user_clicked_recipes.csv'")
+print("Dataset generated and saved as 'user_clicked_recipes.csv'")
 
-# # OPTIONAL: Convert the dataset to JSON
-# user_clicked_data = dataset.to_json(orient='records')
+# OPTIONAL: Convert the dataset to JSON
+user_clicked_data = dataset.to_json(orient='records')
 
-# # Save the JSON data to a file
-# with open('user_clicked_recipes.json', 'w') as json_file:
-#     json_file.write(user_clicked_data)
+# Save the JSON data to a file
+with open('user_clicked_recipes.json', 'w') as json_file:
+    json_file.write(user_clicked_data)
 
-# print("JSON dataset generated and saved as 'user_clicked_recipes.json'")
+print("JSON dataset generated and saved as 'user_clicked_recipes.json'")
 
 """# Informasi
 **Setelah instal tensorflow-recommenders dan impor semua packages, upload dataset ke file dan mulai run kode di sini**
@@ -221,34 +220,27 @@ unique_recipe_titles[:10]
 
 embedding_dimension = 32
 
-user_model = tf.keras.Sequential([
-  tf.keras.layers.StringLookup(
-      vocabulary=unique_user_ids, mask_token=None),
-  # We add an additional embedding to account for unknown tokens.
-  tf.keras.layers.Embedding(len(unique_user_ids) + 1, embedding_dimension)
-])
-
-recipe_model = tf.keras.Sequential([
-  tf.keras.layers.StringLookup(
-      vocabulary=unique_recipe_titles, mask_token=None),
-  tf.keras.layers.Embedding(len(unique_recipe_titles) + 1, embedding_dimension)
-])
-
-metrics = tfrs.metrics.FactorizedTopK(
-  candidates=recipes.batch(128).map(recipe_model)
-)
-
-task = tfrs.tasks.Retrieval(
-  metrics=metrics
-)
-
 class RecipeModel(tfrs.Model):
 
-  def __init__(self, user_model, recipe_model):
+  def __init__(self):
     super().__init__()
-    self.recipe_model: tf.keras.Model = recipe_model
-    self.user_model: tf.keras.Model = user_model
-    self.task: tf.keras.layers.Layer = task
+    self.recipe_model: tf.keras.Model = tf.keras.Sequential([
+        tf.keras.layers.StringLookup(mask_token=None),
+        tf.keras.layers.Embedding(len(unique_recipe_titles) + 1, embedding_dimension)
+        ])
+    self.recipe_model.layers[0].adapt(unique_recipe_titles)
+
+    self.user_model: tf.keras.Model = tf.keras.Sequential([
+        tf.keras.layers.StringLookup(mask_token=None),
+        # We add an additional embedding to account for unknown tokens.
+        tf.keras.layers.Embedding(len(unique_user_ids) + 1, embedding_dimension)
+        ])
+    self.user_model.layers[0].adapt(unique_user_ids)
+
+    self.task: tf.keras.layers.Layer = tfrs.tasks.Retrieval(
+        metrics=tfrs.metrics.FactorizedTopK(
+            candidates=recipes.batch(128).map(self.recipe_model))
+        )
 
   def compute_loss(self, features: Dict[Text, tf.Tensor], training=False) -> tf.Tensor:
     # We pick out the user features and pass them into the user model.
@@ -260,13 +252,30 @@ class RecipeModel(tfrs.Model):
     # The task computes the loss and the metrics.
     return self.task(user_embeddings, positive_recipe_embeddings)
 
+  def call(self, features):
+      return self.user_model(features["user_id"]), self.recipe_model(features["recipe_title"])
+
 class NoBaseClassRecipeModel(tf.keras.Model):
 
-  def __init__(self, user_model, recipe_model):
+  def __init__(self):
     super().__init__()
-    self.recipe_model: tf.keras.Model = recipe_model
-    self.user_model: tf.keras.Model = user_model
-    self.task: tf.keras.layers.Layer = task
+    self.recipe_model: tf.keras.Model = tf.keras.Sequential([
+        tf.keras.layers.StringLookup(
+            vocabulary=unique_recipe_titles, mask_token=None),
+        tf.keras.layers.Embedding(len(unique_recipe_titles) + 1, embedding_dimension)
+        ])
+
+    self.user_model: tf.keras.Model = tf.keras.Sequential([
+        tf.keras.layers.StringLookup(
+            vocabulary=unique_user_ids, mask_token=None),
+        # We add an additional embedding to account for unknown tokens.
+        tf.keras.layers.Embedding(len(unique_user_ids) + 1, embedding_dimension)
+        ])
+
+    self.task: tf.keras.layers.Layer = tfrs.tasks.Retrieval(
+        metrics=tfrs.metrics.FactorizedTopK(
+            candidates=recipes.batch(128).map(self.recipe_model))
+        )
 
   def train_step(self, features: Dict[Text, tf.Tensor]) -> tf.Tensor:
 
@@ -314,16 +323,81 @@ class NoBaseClassRecipeModel(tf.keras.Model):
 
 """Fitting and Evaluating"""
 
-model = RecipeModel(user_model, recipe_model)
+model = RecipeModel()
 model.compile(optimizer=tf.keras.optimizers.Adagrad(learning_rate=0.1))
 
 cached_train = train.shuffle(1_000).batch(100).cache()
 cached_test = test.batch(50).cache()
 
-model.fit(cached_train, epochs=3)
+model.fit(cached_train, epochs=20)
 
 model.evaluate(cached_test, return_dict=True)
 
-"""Membuat Prediksi"""
+"""Prediction"""
 
+# Create a model that takes in raw query features, and
+index = tfrs.layers.factorized_top_k.BruteForce(model.user_model)
+# recommends recipes out of the entire recipes dataset.
+index.index_from_dataset(
+  tf.data.Dataset.zip((recipes.batch(100), recipes.batch(100).map(model.recipe_model)))
+)
 
+# Get recommendations.
+_, titles = index(tf.constant(["42"]))
+print(f"Recommendations for user 42: {titles[0, :3]}")
+
+model.save_weights("model/weights")
+
+!zip -r model.zip model/
+
+!unzip model.zip
+
+recommendation_model = RecipeModel()
+
+mobile_recipes = pd.read_csv("mobile-recipes.csv")
+mobile_recipes['recipe_id'] = range(1, len(mobile_recipes) + 1)
+
+generated_clicked_recipes = generate_user_clicked_data(num_users=20, cycles=3, recipes_df=mobile_recipes.rename(columns={"name": "Title"}))
+tensor_mobile_recipes = tf.data.Dataset.from_tensor_slices({
+        'recipe_title': tf.constant(mobile_recipes['name'].values, dtype=tf.string),
+    })
+generated_clicked_recipes = generated_clicked_recipes.astype({'user_id': str})
+clicked_recipes = tf.data.Dataset.from_tensor_slices({
+        'user_id': tf.constant(generated_clicked_recipes['user_id'].values, dtype=tf.string),
+        'recipe_id': tf.constant(generated_clicked_recipes['recipe_id'].values, dtype=tf.int32),
+        'recipe_title': tf.constant(generated_clicked_recipes['recipe_title'].values, dtype=tf.string),
+    })
+
+def update_vocabulary(model, user_ids, recipe_titles):
+  model.user_model.layers[0].adapt(user_ids)
+  model.recipe_model.layers[0].adapt(recipe_titles)
+
+tensor_recipes = tensor_mobile_recipes.map(lambda x: x["recipe_title"])
+tensor_users = clicked_recipes.map(lambda x: x["user_id"])
+
+recipe_titles = tensor_recipes.batch(len(tensor_recipes))
+user_ids = tensor_users.batch(len(tensor_users))
+
+unique_recipe_titles = np.unique(np.concatenate(list(recipe_titles)))
+unique_user_ids = np.unique(np.concatenate(list(user_ids)))
+update_vocabulary(recommendation_model, user_ids, recipe_titles)
+
+generated_clicked_recipes
+
+shuffled = clicked_recipes.shuffle(100, seed=10, reshuffle_each_iteration=False)
+
+train = shuffled.take(100)
+cached_train = train.shuffle(100).batch(100).cache()
+recommendation_model.compile(optimizer=tf.keras.optimizers.Adagrad(learning_rate=0.1))
+recommendation_model.fit(cached_train, epochs=1)
+
+# Create a model that takes in raw query features, and
+index = tfrs.layers.factorized_top_k.BruteForce(recommendation_model.user_model)
+# recommends recipes out of the entire recipes dataset.
+index.index_from_dataset(
+  tf.data.Dataset.zip((tensor_recipes.batch(395), tensor_recipes.batch(395).map(recommendation_model.recipe_model)))
+)
+
+# Get recommendations.
+_, titles = index(tf.constant(["10"]))
+print(f"Recommendations for user 10: {titles[0, :]}")
