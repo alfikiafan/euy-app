@@ -39,7 +39,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
-                android:text="Mari kurangi pemborosan makanan, masak lebih bijak, dan buat hidangan lezat bersama EUY!"/>
+                android:justificationMode="inter_word"
+                android:text="Mari kurangi pemborosan bahan makanan, masak lebih bijak, dan buat hidangan lezat bersama EUY!"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSignIn"

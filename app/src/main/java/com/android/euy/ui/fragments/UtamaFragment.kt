@@ -110,6 +110,7 @@ class UtamaFragment : Fragment(),MakananAdapter.OnItemClickListener {
                 val newItem = binding.searchEditText.edtTxtSearch.text.toString().trim()
 //
                 if (newItem.isNotEmpty()) {
+
                     binding.scrollview.visibility = View.GONE
 //                    binding.llChicken.visibility = View.GONE
 //                    binding.llFish.visibility = View.GONE
@@ -132,6 +133,10 @@ class UtamaFragment : Fragment(),MakananAdapter.OnItemClickListener {
                 binding.progressBar.visibility = View.GONE
                 resepList.clear()
                 resepList.addAll(it.data.recipes)
+                if (resepList.isEmpty()){
+                 binding.rvSearch.visibility = View.GONE
+                 binding.noRecipeFoundTxt.visibility = View.VISIBLE
+                }
                 searchAdapter.notifyDataSetChanged()
             }
         }

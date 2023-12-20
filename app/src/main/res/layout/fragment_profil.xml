@@ -69,6 +69,7 @@
                 android:layout_marginStart="18dp"
                 android:textAlignment="textEnd"
                 style="@style/Text.Body.Black"
+                android:justificationMode="inter_word"
                 android:text="User"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -105,7 +106,8 @@
                 android:layout_marginStart="18dp"
                 style="@style/Text.Body.Black"
                 android:textAlignment="textEnd"
-                android:text="dellafitrilestari7777777@gmail.com"/>
+                android:text="dellafitrilestari7777777@gmail.com"
+                android:justificationMode="inter_word"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

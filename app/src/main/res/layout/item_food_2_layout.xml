@@ -25,7 +25,9 @@
                 android:layout_height="120dp"
                 android:paddingTop="8dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/tumis"/>
+                android:src="@drawable/tumis"
+                android:background="@drawable/rounded_corner_bg"
+                android:clipToOutline="true"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"

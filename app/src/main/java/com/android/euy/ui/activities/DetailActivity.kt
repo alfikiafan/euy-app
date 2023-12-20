@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import com.android.euy.R
 import com.android.euy.data.model.Recipe
 import com.android.euy.databinding.ActivityDetailBinding
 import com.android.euy.ui.viewmodels.RecipeViewModel
@@ -34,8 +35,13 @@ class DetailActivity : AppCompatActivity() {
         val recipe = intent.getSerializableExtra("recipe") as Recipe
 
         recipe.let {
-            Glide.with(this).load(recipe.image)
-                .into(binding.ivDetailRecipe)
+            if(!recipe.image.isNullOrEmpty()){
+                Glide.with(this).load(recipe.image)
+                    .into(binding.ivDetailRecipe)
+            }else{
+                binding.ivDetailRecipe.setImageResource(R.drawable.placeholder_img)
+            }
+
             binding.tvRecipeName.text= recipe.name
             binding.tvDescription.text = recipe.description.ifEmpty { "-" }
             binding.tvSteps.text = recipe.steps.joinToString()

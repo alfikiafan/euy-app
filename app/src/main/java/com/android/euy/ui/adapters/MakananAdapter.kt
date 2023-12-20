@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.android.euy.R
 import com.android.euy.data.model.Food
 import com.android.euy.data.model.Recipe
 import com.android.euy.databinding.ItemFavoriteLayoutBinding
@@ -80,8 +81,12 @@ class MakananAdapter(private val mContext: Context, private val TYPE: Int, priva
 
     private inner class ExploreHolder(val binding: ItemFood2LayoutBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(food: Recipe) {
-            Glide.with(mContext).load(food.image)
-                .into(binding.imgFood)
+            if(!food.image.isNullOrEmpty()){
+                Glide.with(mContext).load(food.image)
+                    .into(binding.imgFood)
+            }else{
+                binding.imgFood.setImageResource(R.drawable.placeholder_img)
+            }
             binding.tvNamaFood.text = food.name
             binding.tvTotalBahan.text = "${food.ingredients.size} Bahan"
         }
@@ -90,8 +95,13 @@ class MakananAdapter(private val mContext: Context, private val TYPE: Int, priva
     private inner class UtamaHolder(val binding: ItemFoodLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(food: Recipe) {
-            Glide.with(mContext).load(food.image)
-                .into(binding.imgFood)
+
+            if(!food.image.isNullOrEmpty()){
+                Glide.with(mContext).load(food.image)
+                    .into(binding.imgFood)
+            }else{
+                binding.imgFood.setImageResource(R.drawable.placeholder_img)
+            }
             binding.nameFood.text = food.name
         }
     }
@@ -99,8 +109,12 @@ class MakananAdapter(private val mContext: Context, private val TYPE: Int, priva
     private inner class FavoriteHolder(val binding: ItemFavoriteLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(food: Recipe) {
-            Glide.with(mContext).load(food.image)
-                .into(binding.imgFav)
+            if(!food.image.isNullOrEmpty()){
+                Glide.with(mContext).load(food.image)
+                    .into(binding.imgFav)
+            }else{
+                binding.imgFav.setImageResource(R.drawable.placeholder_img)
+            }
             binding.nameFood.text = food.name
         }
     }
@@ -108,14 +122,20 @@ class MakananAdapter(private val mContext: Context, private val TYPE: Int, priva
     private inner class ResepHolder(val binding: ItemResepLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(food: Recipe) {
-            Glide.with(mContext).load(food.image)
-                .into(binding.imgResep)
+//            Glide.with(mContext).load(food.image)
+//                .into(binding.imgResep)
+            if(!food.image.isNullOrEmpty()){
+                Glide.with(mContext).load(food.image)
+                    .into(binding.imgResep)
+            }else{
+                binding.imgResep.setImageResource(R.drawable.placeholder_img)
+            }
             binding.tvRecipeName.text = food.name
             binding.tvTotalBahan.text = "${food.ingredients.size} Bahan"
         }
     }
 
     interface OnItemClickListener {
-        fun onItemClick(food: Recipe)
+        fun onItemClick(recipe: Recipe)
     }
 }

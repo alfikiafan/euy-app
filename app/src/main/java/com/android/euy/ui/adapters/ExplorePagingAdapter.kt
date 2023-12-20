@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.android.euy.R
 import com.android.euy.data.model.Recipe
 import com.android.euy.databinding.ItemFood2LayoutBinding
 import com.bumptech.glide.Glide
@@ -18,9 +19,12 @@ class ExplorePagingAdapter(private val listener: (View, Recipe) -> Unit): Paging
         with(holder) {
             recipe?.let {
                 binding.tvNamaFood.text = it.name
-                Glide.with(holder.itemView.context)
-                    .load(it.image)
-                    .into(binding.imgFood)
+                if(!recipe.image.isNullOrEmpty()){
+                    Glide.with(holder.itemView.context).load(recipe.image)
+                        .into(binding.imgFood)
+                }else{
+                    binding.imgFood.setImageResource(R.drawable.placeholder_img)
+                }
                 binding.tvTotalBahan.text = it.ingredients.size.toString() + " Bahan"
                 binding.root.setOnClickListener { view ->
                     listener(view, it)

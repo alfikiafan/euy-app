@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.android.euy.databinding.FragmentPantriBinding
 import com.android.euy.ui.activities.ResepActivity
@@ -42,9 +43,13 @@ class PantriFragment : Fragment() {
         binding.rvPantri.adapter = adapter
 
         binding.btnLihatResep.setOnClickListener {
-            val intent = Intent(this@PantriFragment.context,ResepActivity::class.java)
-            intent.putExtra("bahan",listBahan.joinToString())
-            startActivity(intent)
+            if (listBahan.isEmpty()){
+                Toast.makeText(context, "Bahan belum dimasukkan",Toast.LENGTH_SHORT).show()
+            }else{
+                val intent = Intent(this@PantriFragment.context,ResepActivity::class.java)
+                intent.putExtra("bahan",listBahan.joinToString())
+                startActivity(intent)
+            }
         }
 
         binding.edtTxtBahan.setOnEditorActionListener { _, actionId, _ ->
